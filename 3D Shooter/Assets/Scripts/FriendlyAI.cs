@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,7 +6,7 @@ using UnityEngine.AI;
 public class FriendlyAI : MonoBehaviour
 {
     private Dictionary<float, GameObject> enemies;
-    public float currentEnemyKey;
+    private float currentEnemyKey;
     NavMeshAgent navMeshAgent;
     Vector3 initialPosition;
 
@@ -16,6 +15,7 @@ public class FriendlyAI : MonoBehaviour
         enemies = new Dictionary<float, GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         initialPosition = transform.position;
+        Invoke("FindNextEnemy", 1);
     }
 
     void Update()
@@ -26,25 +26,20 @@ public class FriendlyAI : MonoBehaviour
     public void RegisterEmemy(GameObject enemyGameObject)
     {
         enemies.Add(Vector3.Distance(transform.position, enemyGameObject.transform.position), enemyGameObject);
-        StartCoroutine("WaitToFindEnemy");
     }
 
     void FindNextEnemy()
     {
-
-        try
-        {
+        if (enemies.Count > 0)
             navMeshAgent.SetDestination(FindMinValue());
-        }
-        catch (KeyNotFoundException)
-        {
+        else
             navMeshAgent.SetDestination(initialPosition);
-        }
+
     }
 
     Vector3 FindMinValue()
     {
-        currentEnemyKey = Mathf.Infinity;
+        currentEnemyKey = enemies.ElementAt(0).Key;
         foreach (var enemy in enemies)
         {
             if (currentEnemyKey > enemy.Key)
@@ -63,19 +58,12 @@ public class FriendlyAI : MonoBehaviour
         enemies.Add(toKey, value);
     }
 
-    IEnumerator WaitToFindEnemy()
-    {
-        yield return new WaitForSeconds(1f);
-
-        FindNextEnemy();
-    }
-
     private void OnCollisionEnter(Collision other)
     {
         if (!other.gameObject.name.Equals("Quad"))
         {
-            Destroy(other.gameObject);
             enemies.Remove(currentEnemyKey);
+            Destroy(other.gameObject);
             for (int i = 0; i < enemies.Count; i++)
             {
                 RenameKey(enemies.ElementAt(i).Key, Vector3.Distance(transform.position, enemies.ElementAt(i).Value.transform.position));
