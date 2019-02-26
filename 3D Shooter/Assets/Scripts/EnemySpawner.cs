@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else if(enemiesToSpawn > 0)
         {
-            Instantiate(currentWave.enemy, currentWave.spawnPositions[Random.Range(0, 5)].position, Quaternion.identity);
+            Instantiate(currentWave.enemy, currentWave.spawnPositions[Random.Range(0, 4)].position, Quaternion.identity);
             enemiesToSpawn--;
         }
     }
