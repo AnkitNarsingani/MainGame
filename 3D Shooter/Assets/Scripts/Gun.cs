@@ -23,7 +23,7 @@ public class Gun : MonoBehaviour
     {
         int layerMask = 1 << 8;
 
-        // This would cast rays only against colliders in layer 8, so we just inverse the mask.
+       
         
 
         Ground = LayerMask.GetMask("Ground");

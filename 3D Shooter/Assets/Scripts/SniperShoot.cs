@@ -22,7 +22,6 @@ public class SniperShoot : MonoBehaviour
         pointLight = GetComponentInChildren<Light>();
         alpha = 1;
         setLaserColor(Color.red);
-       
     }
 
     // Update is called once per frame
@@ -31,22 +30,15 @@ public class SniperShoot : MonoBehaviour
         Timer += Time.deltaTime;
         if (Timer >= 3)
         {
-          
-            StartCoroutine("Shoot");
+                      StartCoroutine("Shoot");
            
             Timer = 0;
         }
         else
         {
             Aim();
-          
-
-            
         }
-           
-         
-        
-
+   
     }
     void Aim()
     {
