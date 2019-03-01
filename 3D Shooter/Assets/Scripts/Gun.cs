@@ -10,19 +10,26 @@ public class Gun : MonoBehaviour
     LayerMask Ground;
     Quaternion rot;
     Rigidbody rb;
+    GameObject bullet;
     public GameObject bulletPrefab;
     public GameObject lockSprite;
     GameObject ls;
     public Transform bulletSpawn;
     Vector3 point;
     Vector3 originalPos;
+    int layerMask;
     public float sprite_height;
     void Start()
     {
+        int layerMask = 1 << 8;
+
+        // This would cast rays only against colliders in layer 8, so we just inverse the mask.
+        
+
         Ground = LayerMask.GetMask("Ground");
 
         Quaternion sprite_opp = Quaternion.LookRotation(Vector3.up);
-        ls = Instantiate(lockSprite, point + new Vector3(0, sprite_height, 0), sprite_opp);
+        ls = Instantiate(lockSprite, point , sprite_opp);
 
     }
 
@@ -49,6 +56,7 @@ public class Gun : MonoBehaviour
             rot = Quaternion.LookRotation(originalPos, Vector3.left);
             if (originalPos.magnitude > 1)
                 transform.rotation = rot;
+
             ls.transform.position = point+new Vector3(0, sprite_height, 0);
 
             // ls.transform.rotation = sprite_opp;
@@ -64,6 +72,7 @@ public class Gun : MonoBehaviour
         rb.AddForce(-transform.forward*1000);
         rb.rotation = rot;
         Destroy(bullet, 1);
+     
     }
     void Launch()
     {
@@ -77,4 +86,5 @@ public class Gun : MonoBehaviour
         return Vector3.zero;
        
     }
+   
 }
