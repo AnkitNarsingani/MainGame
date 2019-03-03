@@ -9,6 +9,7 @@ public class SniperShoot : MonoBehaviour
     public GameObject player;
     LineRenderer laser;
     Light pointLight;
+    Color c;
 
 
     Vector3 diff;
@@ -21,6 +22,7 @@ public class SniperShoot : MonoBehaviour
         laser = GetComponentInChildren<LineRenderer>();
         pointLight = GetComponentInChildren<Light>();
         alpha = 1;
+        c= new Color(100, 86, 35);
         setLaserColor(Color.red);
     }
 
@@ -30,8 +32,7 @@ public class SniperShoot : MonoBehaviour
         Timer += Time.deltaTime;
         if (Timer >= 3)
         {
-                      StartCoroutine("Shoot");
-           
+            StartCoroutine("Shoot");
             Timer = 0;
         }
         else
@@ -49,18 +50,19 @@ public class SniperShoot : MonoBehaviour
     IEnumerator Shoot()
     {
         pointLight.enabled = true;
-        setLaserColor(Color.yellow);
-        laser.startWidth = 1;
-        laser.endWidth = 1;
+        setLaserColor(c);
+        laser.startWidth = 0.05f;
+        laser.endWidth = 0.05f;
 
         yield return new WaitForSeconds(shootTime);
-        laser.startWidth = 0.5f;
-        laser.endWidth = 0.5f;
+        laser.startWidth = 0.01f;
+        laser.endWidth = 0.01f;
         pointLight.enabled = false;
         setLaserColor(Color.red);
     }
     void setLaserColor(Color color)
     {
+       
 
         Gradient gradient = new Gradient();
 

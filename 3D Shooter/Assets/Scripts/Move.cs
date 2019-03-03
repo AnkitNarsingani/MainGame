@@ -2,11 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour {
+public class Move : MonoBehaviour,IDamagable<float>
+{
 
-	// Update is called once per frame
-	void Update () {
+    void Update ()
+    {
         Vector3 move = new Vector3(-Input.GetAxis("Horizontal"),0, -Input.GetAxis("Vertical"));
         transform.Translate(move * 3*Time.deltaTime) ;
 	}
+    public void TakeDamage(float dmgValue)
+    {
+
+    }
+    public void Die(float leastHealth)
+    {
+
+    }
+
+
 }

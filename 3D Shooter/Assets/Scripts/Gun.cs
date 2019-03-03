@@ -22,12 +22,7 @@ public class Gun : MonoBehaviour
     void Start()
     {
         int layerMask = 1 << 8;
-
-       
-        
-
         Ground = LayerMask.GetMask("Ground");
-
         Quaternion sprite_opp = Quaternion.LookRotation(Vector3.up);
         ls = Instantiate(lockSprite, point , sprite_opp);
 
@@ -35,11 +30,9 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-            Look();
+        Look();
         if (Input.GetKeyDown(KeyCode.Mouse0))
         Shoot();
-        
-
     }
  
 
@@ -58,8 +51,6 @@ public class Gun : MonoBehaviour
                 transform.rotation = rot;
 
             ls.transform.position = point+new Vector3(0, sprite_height, 0);
-
-            // ls.transform.rotation = sprite_opp;
             float z_distance = transform.position.z - point.z;
             
         }
@@ -78,7 +69,8 @@ public class Gun : MonoBehaviour
     {
 
     }
-     Vector3 MoveVelocity()
+
+    Vector3 MoveVelocity()
     {
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
         rb = bullet.GetComponent<Rigidbody>();
