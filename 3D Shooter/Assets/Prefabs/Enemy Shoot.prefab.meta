@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:3D Shooter/Assets/Prefabs/Enemy Shoot.prefab.meta
+guid: 3d94a25316bdaa24389c11076db64998
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+=======
+guid: 0bc72db1e9dcb9647818df5a07871127
+folderAsset: yes
+timeCreated: 1436977288
+licenseType: Pro
+DefaultImporter:
+>>>>>>> bc6d700da284a11015d7dfaf8f6c46e320cc35ac:3D Shooter/Assets/Standard Assets/CrossPlatformInput/Scripts/PlatformSpecific.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

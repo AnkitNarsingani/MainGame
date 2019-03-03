@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public Transform[] spawnPositions;
     [SerializeField] private Waves[] waves;
     private Waves currentWave;
     int waveCounter = 0;
@@ -24,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else if(enemiesToSpawn > 0)
         {
-            Instantiate(currentWave.enemy, currentWave.spawnPositions[Random.Range(0, 4)].position, Quaternion.identity);
+            GameObject g = Instantiate(currentWave.enemy, spawnPositions[Random.Range(0, 4)].position, Quaternion.identity);
             enemiesToSpawn--;
         }
     }
@@ -43,6 +44,6 @@ class Waves
     public string name;
     public int enemyCount;
     public float timeBetweenWaves;
-    public Transform[] spawnPositions;
+    public Transform[] shootPositions;
     public GameObject enemy;
 }

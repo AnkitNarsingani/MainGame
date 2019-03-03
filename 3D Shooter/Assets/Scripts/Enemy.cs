@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : LivingEntity
 {
+    protected GameObject friendlyAI;
+    protected NavMeshAgent navMeshAgent;
 
-	void Start ()
+    protected virtual void Start()
     {
-        FindObjectOfType<FriendlyAI>().RegisterEmemy(gameObject);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        friendlyAI = FindObjectOfType<FriendlyAI>().gameObject;
+    }
+
+    void Update()
+    {
+
+    }
 }
