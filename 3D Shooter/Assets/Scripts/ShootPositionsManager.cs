@@ -12,9 +12,11 @@ public class ShootPositionsManager : MonoBehaviour
         shootPoints = new PointInfo[shootPosition.Length];
         for (int i = 0; i < shootPosition.Length; i++)
         {
-            shootPoints[i] = new PointInfo();
-            shootPoints[i].point = shootPosition[i].position;
-            shootPoints[i].isOccupied = false;
+            shootPoints[i] = new PointInfo
+            {
+                point = shootPosition[i].position,
+                isOccupied = false
+            };
         }
     }
 

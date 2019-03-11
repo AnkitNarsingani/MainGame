@@ -7,32 +7,49 @@ public class FriendlyAI : LivingEntity
     Queue<GameObject> enemies;
     private Transform currentEnemy;
     NavMeshAgent navMeshAgent;
-    Vector3 initialPosition;
+    private float timer = 0;
+    public float timeBetweenHits = 2;
 
     void Start()
     {
+        friendlyAI = gameObject;
         enemies = new Queue<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        initialPosition = transform.position;
         Invoke("FindNextEnemy", 1);
     }
 
     void Update()
     {
+        ShootCurrentEnemy();
+
+        if (currentEnemy != null)
+        {
+            transform.LookAt(currentEnemy);
+        }
+        else
+        {
+            FindNextEnemy();
+        }
+    }
+
+    private void ShootCurrentEnemy()
+    {
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.forward * 1000, Color.red);
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && timer > timeBetweenHits)
         {
+            timer = 0;
             IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();
-            if(damageableObject != null)
+            if (damageableObject != null)
             {
-                hit.collider.GetComponent<LivingEntity>().Death += FindNextEnemy;
                 damageableObject.TakeDamage(10);
             }
         }
-
-        if (currentEnemy != null)
-            transform.LookAt(currentEnemy);
+        else
+        {
+            timer += Time.deltaTime;
+        }
     }
 
     public void RegisterEmemy(GameObject enemyGameObject)

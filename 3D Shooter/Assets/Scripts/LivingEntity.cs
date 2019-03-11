@@ -5,20 +5,19 @@ using UnityEngine;
 public class LivingEntity : MonoBehaviour, IDamageable
 {
     public int health;
-    public delegate void Message();
-    public event Message Death;
+    protected static GameObject friendlyAI;
 
-    void Start ()
+    void Start()
     {
-		
-	}
-	
-	void Update ()
-    {
-		
-	}
 
-    public void TakeDamage(int damageAmount)
+    }
+
+    void Update()
+    {
+
+    }
+
+    public virtual void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
         if (health <= 0)
@@ -28,8 +27,5 @@ public class LivingEntity : MonoBehaviour, IDamageable
     protected virtual void Die()
     {
         Destroy(gameObject);
-        Death();
     }
-
-   
 }
