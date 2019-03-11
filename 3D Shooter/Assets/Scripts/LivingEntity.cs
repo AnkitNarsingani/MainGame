@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    public int health;
+    public float health;
     protected static GameObject friendlyAI;
 
     void Start()

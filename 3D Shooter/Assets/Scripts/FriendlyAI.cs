@@ -15,7 +15,6 @@ public class FriendlyAI : LivingEntity
         friendlyAI = gameObject;
         enemies = new Queue<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        Invoke("FindNextEnemy", 1);
     }
 
     void Update()

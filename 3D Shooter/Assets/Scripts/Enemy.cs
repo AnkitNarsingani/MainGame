@@ -6,10 +6,11 @@ using UnityEngine.AI;
 public abstract class Enemy : LivingEntity
 {
     protected NavMeshAgent navMeshAgent;
+    protected float maxhealth;
 
     protected virtual void Start()
     {
-
+        maxhealth = health;
     }
 
     void Update()

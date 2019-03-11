@@ -25,9 +25,9 @@ public class EnemyShoot : Enemy
     public override void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
-        if (health < health / 2)
+        if ((health / maxhealth) * 100 < 75)
         {
-            shootPositionScript.ChangeShootPositions(transform.position);
+            navMeshAgent.SetDestination(shootPositionScript.ChangeShootPositions(transform.position));
         }
         if (health <= 0)
         {

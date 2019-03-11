@@ -44,6 +44,5 @@ class Waves
     public string name;
     public int enemyCount;
     public float timeBetweenWaves;
-    public Transform[] shootPositions;
     public GameObject enemy;
 }
