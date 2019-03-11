@@ -10,22 +10,23 @@ public class Gun : MonoBehaviour
     LayerMask Ground;
     Quaternion rot;
     Rigidbody rb;
-    GameObject bullet;
+  
     public GameObject bulletPrefab;
     public GameObject lockSprite;
-    GameObject ls;
     public Transform bulletSpawn;
+
+    GameObject ls;
+    GameObject bullet;
+
     Vector3 point;
     Vector3 originalPos;
-    int layerMask;
+   
     public float sprite_height;
     void Start()
     {
-        int layerMask = 1 << 8;
         Ground = LayerMask.GetMask("Ground");
         Quaternion sprite_opp = Quaternion.LookRotation(Vector3.up);
         ls = Instantiate(lockSprite, point , sprite_opp);
-
     }
 
     void Update()
@@ -50,33 +51,19 @@ public class Gun : MonoBehaviour
             if (originalPos.magnitude > 1)
                 transform.rotation = rot;
 
-            ls.transform.position = point+new Vector3(0, sprite_height, 0);
-            float z_distance = transform.position.z - point.z;
-            
+            ls.transform.position = point + new Vector3(0, sprite_height, 0);
+
         }
 
     }
     void Shoot()
     { 
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position,Quaternion.identity);
+        bullet = Instantiate(bulletPrefab, bulletSpawn.position,Quaternion.identity);
         rb= bullet.GetComponent<Rigidbody>();
         rb.AddForce(-transform.forward*1000);
         rb.rotation = rot;
-        Destroy(bullet, 1);
      
     }
-    void Launch()
-    {
 
-    }
-
-    Vector3 MoveVelocity()
-    {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
-        rb = bullet.GetComponent<Rigidbody>();
-        rb.useGravity = true;
-        return Vector3.zero;
-       
-    }
    
 }

@@ -9,7 +9,6 @@ public class FriendlyAI : LivingEntity
     NavMeshAgent navMeshAgent;
     Vector3 initialPosition;
 
-
     void Start()
     {
         enemies = new Queue<GameObject>();

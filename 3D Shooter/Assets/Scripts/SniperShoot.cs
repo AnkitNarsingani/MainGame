@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SniperShoot : MonoBehaviour
+public class SniperShoot : MonoBehaviour,IDamageable
 {
     public float shootTime = 1;
-    public float alpha = 1.0f;
+    public float health = 3;
+
+    private float alpha = 1.0f;
+    private float Timer = 0;
+
     public GameObject player;
+
     LineRenderer laser;
     Light pointLight;
     Color c;
-
-
     Vector3 diff;
-    float Timer = 0;
     Vector3 playerPos;
 
 
@@ -26,7 +28,6 @@ public class SniperShoot : MonoBehaviour
         setLaserColor(Color.red);
     }
 
-    // Update is called once per frame
     void Update()
     {
         Timer += Time.deltaTime;
@@ -62,7 +63,6 @@ public class SniperShoot : MonoBehaviour
     }
     void setLaserColor(Color color)
     {
-       
 
         Gradient gradient = new Gradient();
 
@@ -72,4 +72,18 @@ public class SniperShoot : MonoBehaviour
 
         laser.colorGradient = gradient;
     }
+
+    public  void TakeDamage(int damageAmount)
+    {
+        health -= damageAmount;
+        if (health <= 0)
+            Die();
+    }
+
+    protected  void Die()
+    {
+        Destroy(gameObject);
+      
+    }
+  
 }
