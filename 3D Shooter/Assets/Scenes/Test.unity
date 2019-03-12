@@ -570,7 +570,7 @@ Transform:
   - {fileID: 1122103406}
   - {fileID: 375723724}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &824079484
 GameObject:
@@ -1187,13 +1187,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1528120265}
+  - component: {fileID: 1528120266}
   m_Layer: 0
-  m_Name: GunRotate
+  m_Name: GunJoystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1528120265
 Transform:
   m_ObjectHideFlags: 0
@@ -1207,8 +1208,26 @@ Transform:
   - {fileID: 1741885346}
   - {fileID: 1135279964}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
+--- !u!114 &1528120266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1528120264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d79138186e42744fbc9a09fa9d89dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1246147711368896, guid: 8c14a59aed268b14d88e63af5e8be348,
+    type: 2}
+  lockSprite: {fileID: 1021174019256918, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+  bulletSpawn: {fileID: 2139076978}
+  sprite_height: 0
+  ls: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!1 &1604881890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,7 +1488,7 @@ Transform:
   - {fileID: 2129450859}
   - {fileID: 1327192017}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -49.1, z: 0}
 --- !u!136 &1718310968
 CapsuleCollider:
@@ -1750,7 +1769,7 @@ Transform:
   m_LocalScale: {x: 0.4319225, y: 0.43192253, z: 0.43192253}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1809236010
 MonoBehaviour:
@@ -1773,8 +1792,6 @@ GameObject:
   - component: {fileID: 1831658669}
   - component: {fileID: 1831658672}
   - component: {fileID: 1831658671}
-  - component: {fileID: 1831658670}
-  - component: {fileID: 1831658673}
   m_Layer: 5
   m_Name: L
   m_TagString: Untagged
@@ -1801,17 +1818,6 @@ RectTransform:
   m_AnchoredPosition: {x: 48.814194, y: 65.81444}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1831658670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1831658668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d79138186e42744fbc9a09fa9d89dca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1831658671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,70 +1851,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831658668}
---- !u!114 &1831658673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1831658668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1831658670}
-          m_MethodName: MouseDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1831658670}
-          m_MethodName: MouseUp
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 13
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1831658670}
-          m_MethodName: MouseUp
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!1 &2040327110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,30 +1859,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2040327112}
-  - component: {fileID: 2040327111}
+  - component: {fileID: 2040327113}
   m_Layer: 0
   m_Name: GunPointToTouch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2040327111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2040327110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ebbce8e6e0f0b478e0760b024905e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1246147711368896, guid: 8c14a59aed268b14d88e63af5e8be348,
-    type: 2}
-  lockSprite: {fileID: 1021174019256918, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
-  bulletSpawn: {fileID: 617106887}
-  sprite_height: 1
+  m_IsActive: 0
 --- !u!4 &2040327112
 Transform:
   m_ObjectHideFlags: 0
@@ -1956,6 +1882,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
+--- !u!114 &2040327113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2040327110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93792936e46a9c4bb246c767e21a199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1246147711368896, guid: 8c14a59aed268b14d88e63af5e8be348,
+    type: 2}
+  lockSprite: {fileID: 1021174019256918, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+  bulletSpawn: {fileID: 617106887}
+  sprite_height: 0.1
+  ls: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!1 &2129450858
 GameObject:
   m_ObjectHideFlags: 0

@@ -3341,6 +3341,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d79138186e42744fbc9a09fa9d89dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 0}
+  lockSprite: {fileID: 0}
+  bulletSpawn: {fileID: 0}
+  sprite_height: 0
+  ls: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!114 &1831658671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3462,14 +3468,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2040327110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ebbce8e6e0f0b478e0760b024905e2, type: 3}
+  m_Script: {fileID: 11500000, guid: d93792936e46a9c4bb246c767e21a199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1246147711368896, guid: 8c14a59aed268b14d88e63af5e8be348,
     type: 2}
   lockSprite: {fileID: 1021174019256918, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
   bulletSpawn: {fileID: 617106887}
-  sprite_height: 1
+  sprite_height: 0
+  ls: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!4 &2040327112
 Transform:
   m_ObjectHideFlags: 0
