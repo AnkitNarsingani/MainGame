@@ -2,54 +2,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 //Rotate UI to Move
 
 public class GunRotation : Gun
 {
-  
+
     Vector3 point;
     Vector3 originalPos;
 
-   
+    public GameObject point_gameObject;
+    private float h, v;
+    private GunJoyStick gun_joyStick;
+    public float lookSpeed = 1f;
     void Start()
     {
-       
-       
+        gun_joyStick = FindObjectOfType<GunJoyStick>();
     }
 
     new void Update()
     {
-            Look();
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            Shoot();
+        h = gun_joyStick.InputDirection.x;
+        v = gun_joyStick.InputDirection.y;
+        point_gameObject.transform.Translate(new Vector3(-h, v, 0) * lookSpeed*Time.deltaTime);
+        
+        Look();
+      
     }
-
 
     new void Look()
     {
         #region PC
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
-        {
-           
-        }
+        Vector3 diff = point_gameObject.transform.position - transform.position;
+        rot = Quaternion.LookRotation(-diff);
+        transform.rotation = rot;
         #endregion
-
-        foreach (Touch t in Input.touches)
-        {
-            if (Input.touches[0].phase == TouchPhase.Began)
-            {
-                Ray touchRay = Camera.main.ScreenPointToRay(Input.touches[0].position);
-                if (Physics.Raycast(touchRay))
-                    Shoot();
-            }
-        }
     }
 
-    new void Shoot() { }
-   
-   
-
+    new void Shoot()
+    {
+         base.Shoot();
+    }
 
 }

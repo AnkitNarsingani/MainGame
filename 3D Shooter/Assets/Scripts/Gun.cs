@@ -14,6 +14,7 @@ public class Gun : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject lockSprite;
     public Transform bulletSpawn;
+    public float shootForce = 1;
 
     [HideInInspector]
     public float sprite_height;
@@ -21,14 +22,13 @@ public class Gun : MonoBehaviour
     public GameObject ls;
     [HideInInspector]
     public GameObject bullet;
+    
 
-   
    void Start() { }
    protected virtual void Look() { }
 
     public void Update()
     {
-        Look();
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
@@ -39,9 +39,8 @@ public class Gun : MonoBehaviour
    { 
         bullet = Instantiate(bulletPrefab, bulletSpawn.position,Quaternion.identity);
         rb= bullet.GetComponent<Rigidbody>();
-        rb.AddForce(-transform.forward*1000);
+        rb.AddForce(-transform.forward*1000*shootForce);
         rb.rotation = rot;
    }
 
-   
 }

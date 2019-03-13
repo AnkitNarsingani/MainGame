@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunProjectille : Gun {
 
-
+//Direct Touch to Move
     Vector3 point;
     Vector3 originalPos;
 
