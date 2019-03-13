@@ -10,6 +10,7 @@ public class EnemyChase : Enemy
         base.Start();
         friendlyAI.GetComponent<FriendlyAI>().RegisterEmemy(gameObject);
         navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.SetDestination(friendlyAI.transform.position);
     }
 
     void Update()
@@ -19,11 +20,7 @@ public class EnemyChase : Enemy
 
     private void Move()
     {
-        if (Vector3.Distance(transform.position, friendlyAI.transform.position) > 3)
-        {
-            navMeshAgent.SetDestination(friendlyAI.transform.position);
-        }
-        else
+        if (Vector3.Distance(transform.position, friendlyAI.transform.position) < 0.5)
         {
             navMeshAgent.isStopped = true;
             navMeshAgent.ResetPath();

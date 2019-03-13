@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class FriendlyAI : LivingEntity
 {
     Queue<GameObject> enemies;
+    private Rigidbody rb;
     private Transform currentEnemy;
     NavMeshAgent navMeshAgent;
     private float timer = 0;
@@ -15,6 +16,9 @@ public class FriendlyAI : LivingEntity
         friendlyAI = gameObject;
         enemies = new Queue<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = Vector3.zero;
+        rb.inertiaTensorRotation = Quaternion.identity;
     }
 
     void Update()
