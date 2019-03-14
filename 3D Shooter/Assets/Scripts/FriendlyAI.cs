@@ -5,20 +5,17 @@ using UnityEngine.AI;
 public class FriendlyAI : LivingEntity
 {
     Queue<GameObject> enemies;
-    private Rigidbody rb;
     private Transform currentEnemy;
     NavMeshAgent navMeshAgent;
     private float timer = 0;
     public float timeBetweenHits = 2;
+    float damageAmount = 10;
 
     void Start()
     {
         friendlyAI = gameObject;
         enemies = new Queue<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
-        rb.centerOfMass = Vector3.zero;
-        rb.inertiaTensorRotation = Quaternion.identity;
     }
 
     void Update()
@@ -27,6 +24,7 @@ public class FriendlyAI : LivingEntity
 
         if (currentEnemy != null)
         {
+            currentEnemy.position = new Vector3(currentEnemy.position.x, transform.position.y, currentEnemy.position.z);
             transform.LookAt(currentEnemy);
         }
         else
@@ -46,7 +44,7 @@ public class FriendlyAI : LivingEntity
             IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();
             if (damageableObject != null)
             {
-                damageableObject.TakeDamage(10);
+                damageableObject.TakeDamage(damageAmount);
             }
         }
         else

@@ -28,7 +28,7 @@ public class EnemyShoot : Enemy
     }
 
 
-    public override void TakeDamage(int damageAmount)
+    public override void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
         if ((health / maxhealth) * 100 < 75 && !loaded)

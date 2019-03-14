@@ -20,7 +20,7 @@ public class EnemyChase : Enemy
 
     private void Move()
     {
-        if (Vector3.Distance(transform.position, friendlyAI.transform.position) < 0.5)
+        if (Vector3.Distance(transform.position, friendlyAI.transform.position) < 3)
         {
             navMeshAgent.isStopped = true;
             navMeshAgent.ResetPath();
