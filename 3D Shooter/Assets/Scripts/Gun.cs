@@ -16,7 +16,7 @@ public class Gun : MonoBehaviour
     public Transform bulletSpawn;
     public float shootForce = 1;
 
-    [HideInInspector]
+    
     public float sprite_height;
     [HideInInspector]
     public GameObject ls;
