@@ -15,6 +15,7 @@ public class GunRotation : Gun
     private float h, v;
     private GunJoyStick gun_joyStick;
     public float lookSpeed = 1f;
+
     void Start()
     {
         gun_joyStick = FindObjectOfType<GunJoyStick>();
@@ -44,4 +45,5 @@ public class GunRotation : Gun
          base.Shoot();
     }
 
+   
 }

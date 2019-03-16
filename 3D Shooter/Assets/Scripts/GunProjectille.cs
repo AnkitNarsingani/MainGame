@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
-public class GunProjectille : Gun {
+public class GunProjectille : Gun { 
 
 //Direct Touch to Move
     Vector3 point;
     Vector3 originalPos;
+    public GameObject point_gameObject;
+    private float h, v;
+   
+    public float lookSpeed = 1f;
 
     void Start ()
     {
@@ -14,12 +19,16 @@ public class GunProjectille : Gun {
         Quaternion sprite_opp = Quaternion.LookRotation(Vector3.up);
         ls = Instantiate(lockSprite, point, sprite_opp);
     }
-	
 
-	new void  Update ()
+    
+
+    new void  Update ()
     {
+       
+        point_gameObject.transform.Translate(new Vector3(-h, v, 0) * lookSpeed * Time.deltaTime);
+
         Look();
-        base.Update();
+      
 	}
 
     new void Look()
@@ -48,4 +57,6 @@ public class GunProjectille : Gun {
     {
         base.Shoot();
     }
+
+   
 }

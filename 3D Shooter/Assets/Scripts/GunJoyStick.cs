@@ -3,14 +3,17 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class GunJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
+    
     private Image jsContainer;
+    [HideInInspector]
+    public GameObject Lbutton;
     private Image joystick;
     public bool isPressed = false;
     public Vector3 InputDirection;
 
     void Start()
     {
-
+        Lbutton = this.gameObject;
         jsContainer = GetComponent<Image>();
         joystick = transform.GetChild(0).GetComponent<Image>(); //this command is used because there is only one child in hierarchy
         InputDirection = Vector3.zero;
@@ -55,4 +58,5 @@ public class GunJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoin
         InputDirection = Vector3.zero;
         joystick.rectTransform.anchoredPosition = Vector3.zero;
     }
+    
 }
