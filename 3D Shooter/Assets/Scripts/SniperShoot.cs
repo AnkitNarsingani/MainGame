@@ -73,7 +73,7 @@ public class SniperShoot : MonoBehaviour,IDamageable
         laser.colorGradient = gradient;
     }
 
-    public  void TakeDamage(int damageAmount)
+    public  void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
         if (health <= 0)

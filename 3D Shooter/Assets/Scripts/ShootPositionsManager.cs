@@ -14,43 +14,45 @@ public class ShootPositionsManager : MonoBehaviour
         {
             shootPoints[i] = new PointInfo
             {
+                index = i,
                 point = shootPosition[i].position,
                 isOccupied = false
             };
         }
     }
 
-    void Start ()
+    void Start()
     {
 
     }
-	
-	void Update ()
-    {
-		
-	}
 
-    public Vector3 GetShootPosition()
+    void Update()
+    {
+
+    }
+
+    public Vector3 GetShootPosition(EnemyShoot enemyShoot)
     {
         int temp = Random.Range(0, shootPoints.Length - 1);
         if (shootPoints[temp].isOccupied)
         {
-            return GetShootPosition();
+            return GetShootPosition(enemyShoot);
         }
         else
         {
+            enemyShoot.currentIndex = shootPoints[temp].index;
             shootPoints[temp].isOccupied = true;
             return shootPoints[temp].point;
         }
     }
 
-    public Vector3 ChangeShootPositions(Vector3 currentPosition)
+    public Vector3 ChangeShootPositions(EnemyShoot enemyShoot)
     {
         int temp = 0;
 
         for (int i = 0; i < shootPoints.Length; i++)
         {
-            if(shootPoints[i].point == currentPosition)
+            if (shootPoints[i].index == enemyShoot.currentIndex)
             {
                 temp = i;
                 continue;
@@ -58,13 +60,29 @@ public class ShootPositionsManager : MonoBehaviour
         }
 
         shootPoints[temp].isOccupied = false;
-        return GetShootPosition();
+        return GetShootPosition(enemyShoot);
+    }
+
+    public void ReleaseShootPositions(EnemyShoot enemyShoot)
+    {
+        int temp = 0;
+
+        for (int i = 0; i < shootPoints.Length; i++)
+        {
+            if (shootPoints[i].index == enemyShoot.currentIndex)
+            {
+                temp = i;
+                continue;
+            }
+        }
+        shootPoints[temp].isOccupied = false;
     }
 }
 
 [System.Serializable]
 public class PointInfo
 {
+    public int index;
     public Vector3 point;
     public bool isOccupied;
 }
