@@ -4,17 +4,17 @@ using UnityEngine.AI;
 
 public class FriendlyAI : LivingEntity
 {
-    Queue<GameObject> enemies;
+    List<GameObject> enemies;
     private Transform currentEnemy;
     NavMeshAgent navMeshAgent;
     private float timer = 0;
     public float timeBetweenHits = 2;
-    float damageAmount = 10;
+    
 
     void Start()
     {
         friendlyAI = gameObject;
-        enemies = new Queue<GameObject>();
+        enemies = new List<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -53,16 +53,49 @@ public class FriendlyAI : LivingEntity
         }
     }
 
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+        if (health <= 0)
+            Die();
+    }
+
+    protected override void Die()
+    {
+        //Game Over
+        Destroy(gameObject);
+    }
+
     public void RegisterEmemy(GameObject enemyGameObject)
     {
-        enemies.Enqueue(enemyGameObject);
+        enemies.Add(enemyGameObject);
+    }
+
+    public void DeRegisterEmemy(GameObject enemyGameObject)
+    {
+        try
+        {
+            enemies.Remove(enemyGameObject);
+        }
+        catch(MissingReferenceException)
+        {
+
+        }
     }
 
     void FindNextEnemy()
     {
-        if (enemies.Count > 0)
+        try
         {
-            currentEnemy = enemies.Dequeue().transform;
+            if (enemies.Count > 0)
+            {
+                currentEnemy = enemies[0].transform;
+                enemies.RemoveAt(0);
+            }
+        }
+        catch (MissingReferenceException)
+        {
+
         }
     }
 }

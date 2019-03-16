@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class Enemy : LivingEntity
+public abstract class Enemy : LivingEntity, IDamageable
 {
     protected NavMeshAgent navMeshAgent;
     protected float maxhealth;
@@ -16,5 +16,12 @@ public abstract class Enemy : LivingEntity
     void Update()
     {
 
+    }
+
+    public virtual void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+        if (health <= 0)
+            Die();
     }
 }

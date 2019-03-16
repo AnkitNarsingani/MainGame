@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
-
+public class Bullet : MonoBehaviour
+{
 
     public GameObject explision;
     bool spawn = false;
+
     void Start ()
     {
         
@@ -17,6 +18,7 @@ public class Bullet : MonoBehaviour {
     {
 		
 	}
+
     private void OnCollisionEnter(Collision collision)
     {
         if (spawn == false)
@@ -26,10 +28,5 @@ public class Bullet : MonoBehaviour {
             Destroy(gameObject, 0.1f);
           
         }
-
-        
     }
-   
-
-   
 }

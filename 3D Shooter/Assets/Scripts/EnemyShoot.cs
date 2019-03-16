@@ -45,4 +45,10 @@ public class EnemyShoot : Enemy
             Die();
         }  
     }
+
+    protected override void Die()
+    {
+        friendlyAI.GetComponent<FriendlyAI>().DeRegisterEmemy(gameObject);
+        base.Die();
+    }
 }

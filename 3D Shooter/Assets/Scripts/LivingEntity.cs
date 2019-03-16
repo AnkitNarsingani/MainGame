@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LivingEntity : MonoBehaviour, IDamageable
+public class LivingEntity : MonoBehaviour
 {
     public float health;
     protected static GameObject friendlyAI;
+    [SerializeField] protected float damageAmount = 10;
 
     void Start()
     {
@@ -15,13 +16,6 @@ public class LivingEntity : MonoBehaviour, IDamageable
     void Update()
     {
 
-    }
-
-    public virtual void TakeDamage(float damageAmount)
-    {
-        health -= damageAmount;
-        if (health <= 0)
-            Die();
     }
 
     protected virtual void Die()
