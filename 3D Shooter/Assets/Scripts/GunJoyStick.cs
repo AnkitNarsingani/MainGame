@@ -3,19 +3,19 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class GunJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
-    
+
     private Image jsContainer;
     [HideInInspector]
     public GameObject Lbutton;
     private Image joystick;
-    public bool isPressed = false;
+
     public Vector3 InputDirection;
 
     void Start()
     {
         Lbutton = this.gameObject;
         jsContainer = GetComponent<Image>();
-        joystick = transform.GetChild(0).GetComponent<Image>(); //this command is used because there is only one child in hierarchy
+        joystick = transform.GetChild(0).GetComponent<Image>();
         InputDirection = Vector3.zero;
     }
 
@@ -23,7 +23,7 @@ public class GunJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoin
     {
         Vector2 position = Vector2.zero;
 
-        //To get InputDirection
+
         RectTransformUtility.ScreenPointToLocalPointInRectangle
                 (jsContainer.rectTransform,
                 ped.position,
@@ -35,28 +35,41 @@ public class GunJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoin
 
         float x = (jsContainer.rectTransform.pivot.x == 1f) ? position.x * 2 + 1 : position.x * 2 - 1;
         float y = (jsContainer.rectTransform.pivot.y == 1f) ? position.y * 2 + 1 : position.y * 2 - 1;
+       
 
-        InputDirection = new Vector3(x, y, 0);
+        InputDirection = new Vector3(x,y );
         InputDirection = (InputDirection.magnitude > 1) ? InputDirection.normalized : InputDirection;
 
-        //to define the area in which joystick can move around
-        joystick.rectTransform.anchoredPosition = new Vector3(InputDirection.x * (jsContainer.rectTransform.sizeDelta.x / 3)
-                                                               , InputDirection.y * (jsContainer.rectTransform.sizeDelta.y) / 3);
+
+        joystick.rectTransform.anchoredPosition = new Vector3(InputDirection.x * (jsContainer.rectTransform.sizeDelta.x /2),
+                                                               InputDirection.y * (jsContainer.rectTransform.sizeDelta.y/2) );
 
     }
 
     public void OnPointerDown(PointerEventData ped)
     {
-        isPressed = true;
+
         OnDrag(ped);
-        
+
     }
 
     public void OnPointerUp(PointerEventData ped)
     {
-        isPressed = true;
+
         InputDirection = Vector3.zero;
         joystick.rectTransform.anchoredPosition = Vector3.zero;
     }
-    
+    public float Horizontal()
+    {
+        if (InputDirection.x != 0)
+            return InputDirection.x;
+        else return Input.GetAxis("Horizontal");
+    }
+
+    public float Vertical()
+    {
+        if (InputDirection.y != 0)
+            return InputDirection.y;
+        else return Input.GetAxis("Vertical");
+    }
 }

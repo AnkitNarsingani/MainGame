@@ -12,17 +12,17 @@ public class Point : MonoBehaviour {
     {
         Ground = LayerMask.GetMask("Ground");
     }
-	
-	// Update is called once per frame
+
 	void Update ()
     {
+        
         ray = new Ray(transform.position, Vector3.down);
 
         if (Physics.Raycast(ray, out hit,Mathf.Infinity,Ground))
         {
             {
                 point = hit.point;
-                transform.position = point;
+                transform.position = point;         
             }
 
         }

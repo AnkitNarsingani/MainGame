@@ -19,14 +19,22 @@ public class GunRotation : Gun
     void Start()
     {
         gun_joyStick = FindObjectOfType<GunJoyStick>();
+        Quaternion sprite_opp = Quaternion.LookRotation(Vector3.up);
+        ls = Instantiate(lockSprite, point, sprite_opp);
     }
 
     new void Update()
     {
-        h = gun_joyStick.InputDirection.x;
-        v = gun_joyStick.InputDirection.y;
-        point_gameObject.transform.Translate(new Vector3(-h, v, 0) * lookSpeed*Time.deltaTime);
-        
+        h = gun_joyStick.Horizontal();
+        v = gun_joyStick.Vertical();
+       
+        if(v<=0)
+        {
+            point_gameObject.transform.Translate(new Vector3(-h, 0, -2*v) * lookSpeed * Time.deltaTime);
+        }else if (v >= 0)
+        {
+            point_gameObject.transform.Translate(new Vector3(-h, v, 0) * lookSpeed * Time.deltaTime);
+        }
         Look();
       
     }
@@ -35,8 +43,12 @@ public class GunRotation : Gun
     {
         #region PC
         Vector3 diff = point_gameObject.transform.position - transform.position;
-        rot = Quaternion.LookRotation(-diff);
+
+        
+        rot = Quaternion.LookRotation(-diff, Vector3.left);
         transform.rotation = rot;
+        ls.transform.position = point_gameObject.transform.position+ Vector3.up* sprite_height;
+
         #endregion
     }
 
