@@ -1,16 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SniperShoot : MonoBehaviour,IDamageable
+public class EnemySniper : Enemy
 {
     public float shootTime = 1;
-    public float health = 3;
 
     private float alpha = 1.0f;
     private float Timer = 0;
-
-    public GameObject player;
 
     LineRenderer laser;
     Light pointLight;
@@ -19,13 +15,14 @@ public class SniperShoot : MonoBehaviour,IDamageable
     Vector3 playerPos;
 
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         laser = GetComponentInChildren<LineRenderer>();
         pointLight = GetComponentInChildren<Light>();
         alpha = 1;
-        c= new Color(100, 86, 35);
-        setLaserColor(Color.red);
+        c = new Color(100, 86, 35);
+        SetLaserColor(Color.red);
     }
 
     void Update()
@@ -33,25 +30,34 @@ public class SniperShoot : MonoBehaviour,IDamageable
         Timer += Time.deltaTime;
         if (Timer >= 3)
         {
-            StartCoroutine("Shoot");
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+            {
+                IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();
+                if (damageableObject != null)
+                {
+                    StartCoroutine("Shoot");
+                    damageableObject.TakeDamage(damageAmount);
+                }
+            }
+            
             Timer = 0;
         }
         else
         {
             Aim();
         }
-   
     }
     void Aim()
     {
         laser.SetPosition(0, transform.position);
-        laser.SetPosition(1, player.transform.position);
-        transform.LookAt(player.transform.position);
+        laser.SetPosition(1, friendlyAI.transform.position);
+        transform.LookAt(friendlyAI.transform.position);
     }
     IEnumerator Shoot()
     {
         pointLight.enabled = true;
-        setLaserColor(c);
+        SetLaserColor(c);
         laser.startWidth = 0.05f;
         laser.endWidth = 0.05f;
 
@@ -59,9 +65,9 @@ public class SniperShoot : MonoBehaviour,IDamageable
         laser.startWidth = 0.01f;
         laser.endWidth = 0.01f;
         pointLight.enabled = false;
-        setLaserColor(Color.red);
+        SetLaserColor(Color.red);
     }
-    void setLaserColor(Color color)
+    void SetLaserColor(Color color)
     {
 
         Gradient gradient = new Gradient();
@@ -73,17 +79,16 @@ public class SniperShoot : MonoBehaviour,IDamageable
         laser.colorGradient = gradient;
     }
 
-    public  void TakeDamage(float damageAmount)
+    public override void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
         if (health <= 0)
             Die();
     }
 
-    protected  void Die()
+    protected override void Die()
     {
         Destroy(gameObject);
-      
     }
-  
+
 }
