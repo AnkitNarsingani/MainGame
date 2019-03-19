@@ -8,6 +8,7 @@ public class EnemyShoot : Enemy
     ShootPositionsManager shootPositionScript;
     bool loaded = false;
     public int currentIndex;
+
     protected override void Start()
     {
         base.Start();

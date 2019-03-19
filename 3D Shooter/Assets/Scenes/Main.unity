@@ -356,9 +356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd18e1501d35ad4fa3bd527adb831b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTime: 1
   health: 3
-  player: {fileID: 1809236005}
+  damageAmount: 10
+  timeBetweenAttacks: 0
+  shootTime: 1
 --- !u!4 &337202933
 Transform:
   m_ObjectHideFlags: 0
@@ -2924,9 +2925,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd18e1501d35ad4fa3bd527adb831b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTime: 1
   health: 3
-  player: {fileID: 1809236005}
+  damageAmount: 10
+  timeBetweenAttacks: 0
+  shootTime: 1
 --- !u!1 &1726127630
 GameObject:
   m_ObjectHideFlags: 0
@@ -3265,6 +3267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  damageAmount: 10
   timeBetweenHits: 1
 --- !u!54 &1809236011
 Rigidbody:
@@ -3334,10 +3337,11 @@ MonoBehaviour:
   lockSprite: {fileID: 0}
   bulletSpawn: {fileID: 0}
   shootForce: 1
-  sprite_height: 0
+  gunDamage: 10
+  spriteHeight: 0
   ls: {fileID: 0}
   bullet: {fileID: 0}
-  point_gameObject: {fileID: 0}
+  pointGameObject: {fileID: 0}
   lookSpeed: 1
 --- !u!114 &1831658671
 MonoBehaviour:
@@ -3468,10 +3472,11 @@ MonoBehaviour:
   lockSprite: {fileID: 1021174019256918, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
   bulletSpawn: {fileID: 617106887}
   shootForce: 1
-  sprite_height: 0
+  gunDamage: 10
+  spriteHeight: 0
   ls: {fileID: 0}
   bullet: {fileID: 0}
-  point_gameObject: {fileID: 2120608342}
+  pointGameObject: {fileID: 2120608342}
   lookSpeed: 1
 --- !u!4 &2040327112
 Transform:
