@@ -27,11 +27,6 @@ public class EnemyChase : Enemy
         }
     }
 
-    protected void Attack()
-    {
-        
-    }
-
     protected override void Die()
     {
         base.Die();

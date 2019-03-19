@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
     public GameObject explision;
-    [HideInInspector] public float damageAmount;
+    bool spawn = false;
+
+    void Start ()
+    {
+        
+	}
+	
+	
+	void Update ()
+    {
+		
+	}
 
     private void OnCollisionEnter(Collision collision)
     {
-        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-        FriendlyAI friendlyAI = collision.gameObject.GetComponent<FriendlyAI>();
-        if (damageable != null & friendlyAI != null)
+        if (spawn == false)
         {
-            damageable.TakeDamage(damageAmount);
+            spawn = true;
+            Instantiate(explision, transform.position, Quaternion.identity);
+            Destroy(gameObject, 0.1f);
+          
         }
-        Instantiate(explision, transform.position, Quaternion.identity);
-        Destroy(gameObject, 0.1f);
     }
 }

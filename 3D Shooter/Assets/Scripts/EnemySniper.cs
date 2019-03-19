@@ -48,14 +48,12 @@ public class EnemySniper : Enemy
             Aim();
         }
     }
-
     void Aim()
     {
         laser.SetPosition(0, transform.position);
         laser.SetPosition(1, friendlyAI.transform.position);
         transform.LookAt(friendlyAI.transform.position);
     }
-
     IEnumerator Shoot()
     {
         pointLight.enabled = true;
@@ -69,7 +67,6 @@ public class EnemySniper : Enemy
         pointLight.enabled = false;
         SetLaserColor(Color.red);
     }
-
     void SetLaserColor(Color color)
     {
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LivingEntity : MonoBehaviour, IDamageable
+public class LivingEntity : MonoBehaviour
 {
     public float health;
     protected static GameObject friendlyAI;
@@ -21,10 +21,5 @@ public class LivingEntity : MonoBehaviour, IDamageable
     protected virtual void Die()
     {
         Destroy(gameObject);
-    }
-
-    public virtual void TakeDamage(float damageAmount)
-    {
-        health -= damageAmount;
     }
 }

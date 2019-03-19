@@ -7,8 +7,6 @@ public abstract class Enemy : LivingEntity, IDamageable
 {
     protected NavMeshAgent navMeshAgent;
     protected float maxhealth;
-    [SerializeField] protected float timeBetweenAttacks;
-    protected EnemyStates currentState;
 
     protected virtual void Start()
     {
@@ -26,11 +24,4 @@ public abstract class Enemy : LivingEntity, IDamageable
         if (health <= 0)
             Die();
     }
-}
-
-public enum EnemyStates
-{
-    Idle,
-    Walking,
-    Attack
 }

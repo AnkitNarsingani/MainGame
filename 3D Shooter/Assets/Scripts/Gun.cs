@@ -10,43 +10,37 @@ public class Gun : MonoBehaviour
     protected LayerMask Ground;
     protected Quaternion rot;
     protected Rigidbody rb;
-
+  
     public GameObject bulletPrefab;
     public GameObject lockSprite;
     public Transform bulletSpawn;
     public float shootForce = 1;
-    public float gunDamage = 10;
 
-    public float spriteHeight;
-    [HideInInspector] public GameObject ls;
-    [HideInInspector] public GameObject bullet;
+    
+    public float sprite_height;
+    [HideInInspector]
+    public GameObject ls;
+    [HideInInspector]
+    public GameObject bullet;
+    
 
+   void Start() { }
+   protected virtual void Look() { }
 
-    void Start()
-    {
-
-    }
-
-    protected virtual void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
         }
     }
-
-    protected virtual void Look()
-    {
-
-    }
-
-    protected virtual void Shoot()
-    {
-        bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
-        rb = bullet.GetComponent<Rigidbody>();
-        bullet.GetComponent<Bullet>().damageAmount = gunDamage;
-        rb.AddForce(-transform.forward * 1000 * shootForce);
+ 
+   public void Shoot()
+   { 
+        bullet = Instantiate(bulletPrefab, bulletSpawn.position,Quaternion.identity);
+        rb= bullet.GetComponent<Rigidbody>();
+        rb.AddForce(-transform.forward*1000*shootForce);
         rb.rotation = rot;
-    }
+   }
 
 }
