@@ -14,6 +14,6 @@ public class SoldierBullet : MonoBehaviour {
 
     void SoldierShoot()
     {
-        GetComponent<Rigidbody>().AddForce(Vector3.forward*Time.deltaTime*100,ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(Vector3.forward*Time.deltaTime*1000,ForceMode.Impulse);
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Soldier : MonoBehaviour {
-    public GameObject prefab;
- 
-	void Start () {
-      
-        PoolManager.Instance.createPool(5, prefab);
+
+    PoolManager pm;
+     GameObject prefab;
+     int size;
+	void Start ()
+    {
 	}
 	
 	
@@ -15,7 +16,7 @@ public class Soldier : MonoBehaviour {
     {
 		if(Input.GetKeyDown(KeyCode.Space))
         {
-            PoolManager.Instance.Reuse(prefab,Vector3.zero, Quaternion.identity);
+
         }
 	}
 }

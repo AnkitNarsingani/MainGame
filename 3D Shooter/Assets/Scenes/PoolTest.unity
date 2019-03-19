@@ -361,7 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9adb54786a35d04ab7df8a79e82630a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1195159807792098, guid: 9f35e16ab03066944ab766be3b300fa6, type: 2}
 --- !u!1 &2125694837
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3dd999e3aab49459f3982b21b59945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 1195159807792098, guid: 9f35e16ab03066944ab766be3b300fa6, type: 2}
+  poolSize: 10
 --- !u!4 &2125694839
 Transform:
   m_ObjectHideFlags: 0

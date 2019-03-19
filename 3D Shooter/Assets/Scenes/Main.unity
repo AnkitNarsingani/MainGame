@@ -356,9 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd18e1501d35ad4fa3bd527adb831b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTime: 1
   health: 3
-  player: {fileID: 1809236005}
+  damageAmount: 10
+  shootTime: 1
 --- !u!4 &337202933
 Transform:
   m_ObjectHideFlags: 0
@@ -1928,7 +1928,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2510,7 +2510,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2924,9 +2924,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd18e1501d35ad4fa3bd527adb831b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTime: 1
   health: 3
-  player: {fileID: 1809236005}
+  damageAmount: 10
+  shootTime: 1
 --- !u!1 &1726127630
 GameObject:
   m_ObjectHideFlags: 0
@@ -3265,6 +3265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  damageAmount: 10
   timeBetweenHits: 1
 --- !u!54 &1809236011
 Rigidbody:
@@ -3339,6 +3340,8 @@ MonoBehaviour:
   bullet: {fileID: 0}
   point_gameObject: {fileID: 0}
   lookSpeed: 1
+  lerpSpeed: 1
+  canLerp: 0
 --- !u!114 &1831658671
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager : MonoBehaviour {
+public class PoolManager : MonoBehaviour
+{
 
-   public static PoolManager Instance;
-    Dictionary<int, Queue<GameObject>> poolDictionary = new Dictionary<int, Queue<GameObject>>();
+    public static PoolManager Instance;
+    List<GameObject> poolObjects = new List<GameObject>();
+    public GameObject prefab;
+    public int poolSize;
+   
 
-    internal void createPool(int v, object prefab)
-    {
-        throw new NotImplementedException();
-    }
 
     private void Awake()
     {
@@ -24,44 +24,38 @@ public class PoolManager : MonoBehaviour {
 
         DontDestroyOnLoad(this);
     }
-   
-   
-    public void createPool(int size,GameObject prefab)
+
+   public void createPool(GameObject prefab,int maxSize)
     {
-        int poolKey = prefab.GetInstanceID();
-        if(!poolDictionary.ContainsKey(poolKey))
+      
+        for (int i = 0; i < maxSize; i++)
         {
-            poolDictionary.Add(poolKey, new Queue<GameObject>());
-            for (int i = 0; i < size; i++)
-            {
-                var spawnedGameObject = Instantiate(prefab) as GameObject;
-                spawnedGameObject.SetActive(false);
-                poolDictionary[poolKey].Enqueue(spawnedGameObject);
-            }
+            Instantiate(prefab,transform);
+            prefab.SetActive(false);
+            poolObjects.Add(prefab);
         }
+
+    }
+    public GameObject getPool()
+    {
+        //for (int i = 0; i < poolObjects.Count; i++)
+        //{
+        //    if (!prefab.activeInHierarchy)
+        //        return prefab;
+        //}
+        //else
+
+        return null;
     }
 
-    public void Reuse(GameObject g, Vector3 v, Quaternion q)
+    void Start()
     {
-        int poolKey = g.GetInstanceID();
-      if(poolDictionary[poolKey].Contains(g))
-        {
-            GameObject reuseGameObject = poolDictionary[poolKey].Dequeue();
-
-            poolDictionary[poolKey].Enqueue(reuseGameObject);
-            reuseGameObject.SetActive(true);
-            reuseGameObject.transform.position = v;
-            reuseGameObject.transform.rotation = q;
-          
-        }
+        createPool(prefab, poolSize);       
     }
-    void Start ()
-    {
-		
-	}
-	
 
-	void Update () {
-		
-	}
+
+    void Update()
+    {
+
+    }
 }
