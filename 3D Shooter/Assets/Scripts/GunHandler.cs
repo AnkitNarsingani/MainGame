@@ -5,45 +5,55 @@ using UnityEngine;
 public class GunHandler : MonoBehaviour
 {
 
-   
-    public int currentGun = 0;
-   
-    public GameObject[] gunObject = new GameObject[1];
-    public GameObject[] points = new GameObject[1];
-    public GameObject[] GunUI = new GameObject[1];
-    int i;
-    private void Start()
-    {
-        
-        check();
-    }
-    void Update()
-    {
-     
 
-    }
-    void check()
-    {
-       
-        foreach (Transform t in transform)
-        {
-            if (i > t.childCount - 1)
-                i = 0;
-            else
-                i++;
-            if (i == currentGun)
-                EnableGun(gunObject[currentGun], points[currentGun], GunUI[currentGun]);
-            else
-                DisableGun(gunObject[currentGun], points[currentGun], GunUI[currentGun]);
 
-           
-        }
-       
-    }
   
+    public float shootForce=5;
+   
+    public float sprite_height;
+   
+    public float lookSpeed;
+  
+    [Range(0.1f, 1)]
+    protected float lerpSpeed;
+
+
+    public int currentGun = 0;
+    [SerializeField]
+    protected GameObject[] gunObject = new GameObject[1];
+    [SerializeField]
+    protected GameObject[] points = new GameObject[1];
+    [SerializeField]
+    protected GameObject[] GunUI = new GameObject[1];
+    int i;
+
+    void Start()
+    {
+        check(currentGun);
+       
+
+    }
+
+   
+
+    private void Update()
+    {
+      
+
+    }
+    
+    void check(int currentGUN)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            DisableGun(gunObject[i], points[i], GunUI[i]);
+        }
+        EnableGun(gunObject[currentGun], points[currentGun], GunUI[currentGun]);
+    }
+   
+
     void EnableGun(GameObject gun, GameObject point, GameObject ui)
     {
-       
         gun.SetActive(true);
         point.SetActive(true);
         ui.SetActive(true);
@@ -63,14 +73,13 @@ public class GunHandler : MonoBehaviour
         if (GUI.Button(new Rect(10, 10, 50, 50), "GunJoyStick"))
         {
             currentGun = 1;
-            check();
-
+            check(currentGun);
 
         }
         if (GUI.Button(new Rect(60, 10, 50, 50), "GunTouch"))
         {
             currentGun = 0;
-            check();
+            check(currentGun);
         }
 
     }

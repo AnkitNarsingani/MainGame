@@ -140,7 +140,7 @@ Transform:
   m_LocalScale: {x: 0.46205345, y: 0.3124988, z: 1}
   m_Children: []
   m_Father: {fileID: 1097688971}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8880021
 MonoBehaviour:
@@ -153,6 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5337ff47b27afc4a85c794aeaf3c789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &19997691 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1021174019256918, guid: 29a8f1f32399c094a80769aa8459469f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1781269680}
 --- !u!1 &112116180
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,10 +184,10 @@ Transform:
   m_LocalPosition: {x: 7.5116596, y: 29.80504, z: 12.421875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1528120265}
   - {fileID: 2040327112}
+  - {fileID: 1528120265}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &112116182
 MonoBehaviour:
@@ -195,8 +200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5159bc46d66de954695719a8e867fc1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunJoyStick: 0
-  GunTouch: 0
+  shootForce: 5
+  sprite_height: 1
+  lookSpeed: 0.31
   currentGun: 0
   gunObject:
   - {fileID: 2040327110}
@@ -267,7 +273,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &375723720
 GameObject:
@@ -425,10 +431,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1831658669}
   - {fileID: 1868031022}
+  - {fileID: 1831658669}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -519,7 +525,7 @@ Transform:
   m_LocalScale: {x: 15.564444, y: 14.721781, z: 2.6395702}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &571545505
 GameObject:
@@ -664,7 +670,7 @@ Transform:
   - {fileID: 1122103406}
   - {fileID: 375723724}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &824079484
 GameObject:
@@ -900,7 +906,7 @@ Transform:
   m_LocalScale: {x: 0.46205, y: 0.3125, z: 1}
   m_Children: []
   m_Father: {fileID: 1097688971}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &967749770
 MonoBehaviour:
@@ -950,10 +956,10 @@ Transform:
   m_LocalPosition: {x: -4.3271613, y: 17.71494, z: 24.951818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8880020}
   - {fileID: 967749769}
+  - {fileID: 8880020}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1122103402
 GameObject:
@@ -1342,7 +1348,7 @@ Transform:
   - {fileID: 1741885346}
   - {fileID: 1135279964}
   m_Father: {fileID: 112116181}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
 --- !u!114 &1528120266
 MonoBehaviour:
@@ -1355,18 +1361,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d79138186e42744fbc9a09fa9d89dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootForce: 0
+  sprite_height: 0
+  lookSpeed: 0
+  currentGun: 0
+  gunObject:
+  - {fileID: 0}
+  points:
+  - {fileID: 0}
+  GunUI:
+  - {fileID: 0}
+  point: {x: 0, y: 0, z: 0}
+  originalPos: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: 1246147711368896, guid: 8c14a59aed268b14d88e63af5e8be348,
     type: 2}
   lockSprite: {fileID: 1021174019256918, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
   bulletSpawn: {fileID: 2139076978}
-  shootForce: 2
-  sprite_height: 0.5
-  ls: {fileID: 1021174019256918, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+  ls: {fileID: 19997691}
   bullet: {fileID: 0}
   point_gameObject: {fileID: 8880019}
-  lookSpeed: 3
-  lerpSpeed: 1
-  canLerp: 0
 --- !u!1 &1604881890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,6 +1807,48 @@ Transform:
   m_Father: {fileID: 1959004854}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1781269680
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4936914408494430, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.7100477
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936914408494430, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.15096484
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936914408494430, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.603235
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936914408494430, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936914408494430, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936914408494430, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936914408494430, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936914408494430, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1809236005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,7 +1934,7 @@ Transform:
   m_Children:
   - {fileID: 1959004854}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1809236010
 MonoBehaviour:
@@ -1923,7 +1978,7 @@ RectTransform:
   - {fileID: 1220432458}
   - {fileID: 1527501565}
   m_Father: {fileID: 393639965}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2003,7 +2058,7 @@ RectTransform:
   m_Children:
   - {fileID: 900863985}
   m_Father: {fileID: 393639965}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2198,7 +2253,7 @@ Transform:
   - {fileID: 1726127634}
   - {fileID: 824079485}
   m_Father: {fileID: 112116181}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
 --- !u!114 &2040327113
 MonoBehaviour:
@@ -2211,16 +2266,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93792936e46a9c4bb246c767e21a199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootForce: 0
+  sprite_height: 0
+  lookSpeed: 0
+  currentGun: 0
+  gunObject:
+  - {fileID: 0}
+  points:
+  - {fileID: 0}
+  GunUI:
+  - {fileID: 0}
+  point: {x: 0, y: 0, z: 0}
+  originalPos: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: 1246147711368896, guid: 8c14a59aed268b14d88e63af5e8be348,
     type: 2}
   lockSprite: {fileID: 1021174019256918, guid: 29a8f1f32399c094a80769aa8459469f, type: 2}
   bulletSpawn: {fileID: 617106887}
-  shootForce: 2
-  sprite_height: 0.5
-  ls: {fileID: 0}
+  ls: {fileID: 19997691}
   bullet: {fileID: 0}
   point_gameObject: {fileID: 967749768}
-  lookSpeed: 0.1
 --- !u!1 &2139076977
 GameObject:
   m_ObjectHideFlags: 0

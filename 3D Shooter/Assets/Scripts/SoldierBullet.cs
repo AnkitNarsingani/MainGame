@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class SoldierBullet : MonoBehaviour {
 
- 
-   
 
+    PoolManager pm;
+    public GameObject soldier;
     private void OnEnable()
     {
-        SoldierShoot();
+      
+       
     }
 
     void SoldierShoot()

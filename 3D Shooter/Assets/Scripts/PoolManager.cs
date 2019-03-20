@@ -38,13 +38,13 @@ public class PoolManager : MonoBehaviour
     }
     public GameObject getPool()
     {
-        //for (int i = 0; i < poolObjects.Count; i++)
-        //{
-        //    if (!prefab.activeInHierarchy)
-        //        return prefab;
-        //}
-        //else
-
+        for (int i = 0; i < poolObjects.Count; i++)
+        {
+            if (!poolObjects[i].activeInHierarchy)
+                return poolObjects[i];
+          
+             
+        }
         return null;
     }
 

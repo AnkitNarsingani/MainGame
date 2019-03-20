@@ -357,8 +357,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
   health: 3
   damageAmount: 10
+=======
+>>>>>>> parent of 31b0f7b... Enemy temp
 =======
 >>>>>>> parent of 31b0f7b... Enemy temp
   shootTime: 1
@@ -2930,8 +2933,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
   health: 3
   damageAmount: 10
+=======
+>>>>>>> parent of 31b0f7b... Enemy temp
 =======
 >>>>>>> parent of 31b0f7b... Enemy temp
   shootTime: 1

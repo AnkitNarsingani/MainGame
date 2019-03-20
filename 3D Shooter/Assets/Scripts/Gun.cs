@@ -3,44 +3,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : GunHandler
 {
     protected RaycastHit hit;
     protected Ray ray;
     protected LayerMask Ground;
     protected Quaternion rot;
     protected Rigidbody rb;
-  
+
+   
+
+    [HideInInspector]
+    public Vector3 point;
+    [HideInInspector]
+    public Vector3 originalPos;
+    
+
+    [HideInInspector]
     public GameObject bulletPrefab;
     public GameObject lockSprite;
     public Transform bulletSpawn;
-    public float shootForce = 1;
 
     
-    public float sprite_height;
-    [HideInInspector]
     public GameObject ls;
     [HideInInspector]
     public GameObject bullet;
-    
 
-   void Start() { }
-   protected virtual void Look() { }
+    protected GunHandler gh;
+    public void Awake()
+    {
+        point = Vector3.zero;
+        Quaternion sprite_opp = Quaternion.LookRotation(Vector3.up);
+        ls.transform.rotation = sprite_opp;
+      
+    }
 
+   
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Shoot();
-        }
+       
     }
- 
-   public void Shoot()
-   { 
-        bullet = Instantiate(bulletPrefab, bulletSpawn.position,Quaternion.identity);
-        rb= bullet.GetComponent<Rigidbody>();
-        rb.AddForce(-transform.forward*1000*shootForce);
+    protected virtual void Look() { }
+
+    public void Shoot()
+    {
+        bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        rb = bullet.GetComponent<Rigidbody>();
+        rb.AddForce(-transform.forward * 1000 * shootForce);
         rb.rotation = rot;
-   }
+    }
 
 }

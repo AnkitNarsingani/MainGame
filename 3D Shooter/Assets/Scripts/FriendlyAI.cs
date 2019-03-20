@@ -16,6 +16,7 @@ public class FriendlyAI : LivingEntity
         friendlyAI = gameObject;
         enemies = new List<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        
     }
 
     void Update()
