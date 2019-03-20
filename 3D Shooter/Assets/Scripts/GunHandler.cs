@@ -5,43 +5,35 @@ using UnityEngine;
 public class GunHandler : MonoBehaviour
 {
 
-
-
-  
-    public float shootForce=5;
-   
+    [SerializeField]
+    public float shootForce;
+    [SerializeField]
     public float sprite_height;
-   
+    [SerializeField]
     public float lookSpeed;
-  
     [Range(0.1f, 1)]
-    protected float lerpSpeed;
-
-
-    public int currentGun = 0;
+    public float lerpSpeed;
     [SerializeField]
     protected GameObject[] gunObject = new GameObject[1];
     [SerializeField]
     protected GameObject[] points = new GameObject[1];
     [SerializeField]
     protected GameObject[] GunUI = new GameObject[1];
-    int i;
 
-    void Start()
+    public int currentGun = 0;
+    int i;
+    GunProjectille gp;
+    GunRotation gr;
+
+    void Awake()
     {
         check(currentGun);
-       
-
     }
 
+
+    void Update() { }
    
 
-    private void Update()
-    {
-      
-
-    }
-    
     void check(int currentGUN)
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -50,7 +42,7 @@ public class GunHandler : MonoBehaviour
         }
         EnableGun(gunObject[currentGun], points[currentGun], GunUI[currentGun]);
     }
-   
+
 
     void EnableGun(GameObject gun, GameObject point, GameObject ui)
     {

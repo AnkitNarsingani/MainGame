@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5159bc46d66de954695719a8e867fc1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootForce: 5
+  shootForce: 2
   sprite_height: 1
   lookSpeed: 0.31
   currentGun: 0
@@ -1361,9 +1361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d79138186e42744fbc9a09fa9d89dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootForce: 0
-  sprite_height: 0
-  lookSpeed: 0
+  shootForce: 5
+  sprite_height: 1
+  lookSpeed: 1
   currentGun: 0
   gunObject:
   - {fileID: 0}
@@ -2266,9 +2266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93792936e46a9c4bb246c767e21a199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootForce: 0
-  sprite_height: 0
-  lookSpeed: 0
+  shootForce: 5
+  sprite_height: 1
+  lookSpeed: 1
   currentGun: 0
   gunObject:
   - {fileID: 0}

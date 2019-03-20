@@ -11,16 +11,17 @@ public class GunProjectille : Gun
     public GameObject point_gameObject;
     private float h, v;
 
-    new void Start()
+    void Start()
     {
         Ground = 1 << 8;
     }
 
 
 
-   new  void Update()
+    new void Update()
     {
-        point_gameObject.transform.Translate(new Vector3(-h, v, 0) * lookSpeed * Time.deltaTime);
+        base.Update();
+        point_gameObject.transform.Translate(new Vector3(-h, v, 0) * lookSpeed1 * Time.deltaTime);
         Look();
     }
 
@@ -37,9 +38,8 @@ public class GunProjectille : Gun
 
                 rot = Quaternion.LookRotation(originalPos, Vector3.left);
 
-                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime / lookSpeed);
-
-               ls.transform.position = point + new Vector3(0, sprite_height, 0);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookSpeed1);
+                ls.transform.position = point + new Vector3(0, sprite_height1, 0);
             }
 
         }
