@@ -21,16 +21,6 @@ public class ShootPositionsManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     public Vector3 GetShootPosition(EnemyShoot enemyShoot)
     {
         int temp = Random.Range(0, shootPoints.Length - 1);
@@ -48,34 +38,15 @@ public class ShootPositionsManager : MonoBehaviour
 
     public Vector3 ChangeShootPositions(EnemyShoot enemyShoot)
     {
-        int temp = 0;
-
-        for (int i = 0; i < shootPoints.Length; i++)
-        {
-            if (shootPoints[i].index == enemyShoot.currentIndex)
-            {
-                temp = i;
-                continue;
-            }
-        }
-
-        shootPoints[temp].isOccupied = false;
-        return GetShootPosition(enemyShoot);
+        int index = enemyShoot.currentIndex;
+        Vector3 nextPos = GetShootPosition(enemyShoot);
+        ReleaseShootPositions(index);
+        return nextPos;
     }
 
-    public void ReleaseShootPositions(EnemyShoot enemyShoot)
+    public void ReleaseShootPositions(int index)
     {
-        int temp = 0;
-
-        for (int i = 0; i < shootPoints.Length; i++)
-        {
-            if (shootPoints[i].index == enemyShoot.currentIndex)
-            {
-                temp = i;
-                continue;
-            }
-        }
-        shootPoints[temp].isOccupied = false;
+        shootPoints[index].isOccupied = false;
     }
 }
 

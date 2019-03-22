@@ -37,7 +37,7 @@ public class EnemySniper : Enemy
                 if (damageableObject != null)
                 {
                     StartCoroutine("Shoot");
-                    damageableObject.TakeDamage(damageAmount);
+                    damageableObject.TakeDamage(attackPower);
                 }
             }
             

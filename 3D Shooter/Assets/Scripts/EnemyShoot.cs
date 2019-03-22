@@ -7,7 +7,8 @@ public class EnemyShoot : Enemy
 {
     ShootPositionsManager shootPositionScript;
     bool loaded = false;
-    public int currentIndex;
+    [HideInInspector] public int currentIndex;
+
     protected override void Start()
     {
         base.Start();
@@ -15,18 +16,26 @@ public class EnemyShoot : Enemy
         navMeshAgent = GetComponent<NavMeshAgent>();
         shootPositionScript = GameObject.Find("Shoot Positions").GetComponent<ShootPositionsManager>();
         navMeshAgent.SetDestination(shootPositionScript.GetShootPosition(this));
+        currentState = EnemyStates.Moving;
     }
 
     void Update()
     {
-        float dist = navMeshAgent.remainingDistance;
-        if (dist != Mathf.Infinity && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && navMeshAgent.remainingDistance == 0 && navMeshAgent.isStopped)
-        {
-            navMeshAgent.isStopped = true;
-            navMeshAgent.ResetPath();
-        }
+        if (currentState == EnemyStates.Moving)
+            Moving();
+        else if (currentState == EnemyStates.Attacking)
+            StartCoroutine("Attack");
     }
 
+    private void Moving()
+    {
+        float dist = navMeshAgent.remainingDistance;
+        if (dist != Mathf.Infinity && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && navMeshAgent.remainingDistance == 0)
+        {
+            navMeshAgent.ResetPath();
+            currentState = EnemyStates.Attacking;
+        }
+    }
 
     public override void TakeDamage(float damageAmount)
     {
@@ -34,16 +43,21 @@ public class EnemyShoot : Enemy
         if ((health / maxhealth) * 100 < 75 && !loaded)
         {
             loaded = true;
-            navMeshAgent.isStopped = false;
             Vector3 temp = shootPositionScript.ChangeShootPositions(this);
             navMeshAgent.SetDestination(temp);
-
+            StartCoroutine("NavmeshUpdate");
         }
         if (health <= 0)
         {
-            shootPositionScript.ReleaseShootPositions(this);
+            shootPositionScript.ReleaseShootPositions(currentIndex);
             Die();
-        }  
+        }
+    }
+
+    IEnumerator NavmeshUpdate()
+    {
+        yield return null;
+        currentState = EnemyStates.Moving;
     }
 
     protected override void Die()

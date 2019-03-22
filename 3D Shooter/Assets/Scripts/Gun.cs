@@ -9,7 +9,6 @@ public class Gun : MonoBehaviour
     protected Ray ray;
     protected LayerMask Ground;
     protected Quaternion rot;
-    protected Rigidbody rb;
     protected GunHandler gh;
 
     [HideInInspector]
@@ -30,13 +29,12 @@ public class Gun : MonoBehaviour
     [HideInInspector]
     public GameObject bulletPrefab;
     [HideInInspector]
-    public GameObject bullet;
     public GameObject lockSprite;
     public Transform bulletSpawn;
     public GameObject ls;
-   
+    public float gunDamage = 10;
 
-   
+
     public void Awake()
     {
         point = Vector3.zero;
@@ -56,10 +54,11 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        Rigidbody rb;
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        bullet.GetComponent<Bullet>().bulletDamage = gunDamage; //Add after Object Pool
         rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(-transform.forward * 1000 * shootForce1);
         rb.rotation = rot;
     }
-
 }

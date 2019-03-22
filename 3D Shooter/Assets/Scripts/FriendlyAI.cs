@@ -8,23 +8,26 @@ public class FriendlyAI : LivingEntity
     private Transform currentEnemy;
     NavMeshAgent navMeshAgent;
     private float timer = 0;
-    public float timeBetweenHits = 2;
-    
+    FriendlyAIStates currentState;
 
     void Start()
     {
         friendlyAI = gameObject;
         enemies = new List<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        
+        currentState = FriendlyAIStates.Idle;
     }
 
     void Update()
     {
-        ShootCurrentEnemy();
+        ShootCurrentEnemy();   
+    }
 
+    private void ShootCurrentEnemy()
+    {
         if (currentEnemy != null)
         {
+            currentState = FriendlyAIStates.Attacking;
             currentEnemy.position = new Vector3(currentEnemy.position.x, transform.position.y, currentEnemy.position.z);
             transform.LookAt(currentEnemy);
         }
@@ -32,20 +35,17 @@ public class FriendlyAI : LivingEntity
         {
             FindNextEnemy();
         }
-    }
-
-    private void ShootCurrentEnemy()
-    {
+        
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.forward * 1000, Color.red);
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && timer > timeBetweenHits)
+        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && timer > timeBetweenAttacks)
         {
             timer = 0;
             IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();
             if (damageableObject != null)
             {
-                damageableObject.TakeDamage(damageAmount);
+                damageableObject.TakeDamage(attackPower);
             }
         }
         else
@@ -54,17 +54,14 @@ public class FriendlyAI : LivingEntity
         }
     }
 
-    public void TakeDamage(float damageAmount)
+    public FriendlyAIStates GetCurrentState()
     {
-        health -= damageAmount;
-        if (health <= 0)
-            Die();
+        return currentState;
     }
 
     protected override void Die()
     {
-        //Game Over
-        Destroy(gameObject);
+        currentState = FriendlyAIStates.Dead;
     }
 
     public void RegisterEmemy(GameObject enemyGameObject)
@@ -99,4 +96,11 @@ public class FriendlyAI : LivingEntity
 
         }
     }
+}
+
+public enum FriendlyAIStates
+{
+    Idle,
+    Attacking,
+    Dead,
 }

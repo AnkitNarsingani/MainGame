@@ -11,11 +11,15 @@ public class EnemyChase : Enemy
         friendlyAI.GetComponent<FriendlyAI>().RegisterEmemy(gameObject);
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.SetDestination(friendlyAI.transform.position);
+        currentState = EnemyStates.Moving;
     }
 
     void Update()
     {
-        Move();
+        if (currentState == EnemyStates.Moving)
+            Move();
+        else if (currentState == EnemyStates.Attacking)
+            StartCoroutine("Attack");
     }
 
     private void Move()
@@ -24,6 +28,7 @@ public class EnemyChase : Enemy
         {
             navMeshAgent.isStopped = true;
             navMeshAgent.ResetPath();
+            currentState = EnemyStates.Attacking;
         }
     }
 
