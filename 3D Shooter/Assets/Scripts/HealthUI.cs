@@ -8,7 +8,7 @@ public class HealthUI : MonoBehaviour
       
     public GameObject Player;
     public Canvas canvas;
-    Vector3 Offset = Vector3.zero;
+    public Vector3 Offset;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class HealthUI : MonoBehaviour
     
     void Update()
     {   
-        transform.position = worldToUISpace(canvas, Player.transform.position) + Offset;
+        this.transform.position = worldToUISpace(canvas, Player.transform.position) + Offset;
     }
 
     public Vector3 worldToUISpace(Canvas parentCanvas, Vector3 worldPos)

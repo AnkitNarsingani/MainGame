@@ -18,7 +18,7 @@ public class Explosion : MonoBehaviour
 
         foreach (Collider c in objInRange)
         {
-            // print(c);
+         
             IDamageable damageable = c.GetComponent<IDamageable>();
             if (damageable != null)
             {
@@ -29,14 +29,7 @@ public class Explosion : MonoBehaviour
         Destroy(gameObject, 1);
 
     }
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name != "Sniper")
-        {
-            print("Hit");
-        }
-
-    }
+    
 
     private void OnDrawGizmos()
     {
