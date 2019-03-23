@@ -30,7 +30,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4093672671430536
 Transform:
   m_ObjectHideFlags: 1
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soldier: {fileID: 1945500716000152, guid: 2ee0bcbaf0e7d6e4bbc4e5d6cf506c4e, type: 2}
+  t: {fileID: 4335848839894982, guid: 2ee0bcbaf0e7d6e4bbc4e5d6cf506c4e, type: 2}
 --- !u!135 &135399848089588380
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 479458739}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 479458738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.53125, y: 3.2373047, z: -3.8417969}
-  m_LocalScale: {x: 1.9013245, y: 1.9013245, z: 1.9013245}
+  m_LocalScale: {x: 13.4959345, y: 1.9013245, z: 1.9013245}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -303,6 +303,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114348989282706622, guid: 2ee0bcbaf0e7d6e4bbc4e5d6cf506c4e,
+        type: 2}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 1195159807792098, guid: 9f35e16ab03066944ab766be3b300fa6,
+        type: 2}
+    - target: {fileID: 1945500716000152, guid: 2ee0bcbaf0e7d6e4bbc4e5d6cf506c4e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ee0bcbaf0e7d6e4bbc4e5d6cf506c4e, type: 2}
   m_IsPrefabParent: 0
@@ -333,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3dd999e3aab49459f3982b21b59945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolObjects: []
   prefab: {fileID: 1195159807792098, guid: 9f35e16ab03066944ab766be3b300fa6, type: 2}
   poolSize: 10
 --- !u!4 &2125694839

@@ -16,17 +16,15 @@ public class Soldier : MonoBehaviour {
 	
 	void Update ()
     {
-        GameObject bullet = PoolManager.Instance.getPool();
+       
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            print("fd");
-           
-            if (bullet != null)
-            {
-                bullet.transform.position = transform.transform.position;
-                bullet.transform.rotation = transform.transform.rotation;
-                bullet.SetActive(true);
-            }
+            print("shoot");
+            GameObject bullet = PoolManager.Instance.getPool();
+
+            if (bullet == null) { return; }
+            bullet.transform.position = transform.position + Vector3.forward * 3;  
+            bullet.SetActive(true);
         }
       
 

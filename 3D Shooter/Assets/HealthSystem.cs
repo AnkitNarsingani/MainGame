@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour {
+    Vector3 diff;
+    RectTransform rt;
 
-	// Use this for initialization
-	void Start () {
-		
+    void Start () {
+        rt = GetComponent<RectTransform>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+      ;
+        rt.transform.position = transform.position;
 	}
 }
