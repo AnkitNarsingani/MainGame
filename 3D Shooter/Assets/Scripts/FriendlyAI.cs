@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class FriendlyAI : LivingEntity
 {
@@ -54,14 +55,22 @@ public class FriendlyAI : LivingEntity
         }
     }
 
-    public FriendlyAIStates GetCurrentState()
+    public override void TakeDamage(float damageAmount)
     {
-        return currentState;
+        health -= damageAmount;
+        healthBar.value = health;
+        if (health <= 0)
+            Die();   
     }
 
     protected override void Die()
     {
         currentState = FriendlyAIStates.Dead;
+    }
+
+    public FriendlyAIStates GetCurrentState()
+    {
+        return currentState;
     }
 
     public void RegisterEmemy(GameObject enemyGameObject)
