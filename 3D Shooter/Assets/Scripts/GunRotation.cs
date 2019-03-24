@@ -11,18 +11,21 @@ public class GunRotation : Gun
     public GameObject point_gameObject;
     private float h, v;
     private GunJoyStick gun_joyStick;
+    private VirtualJoystick vj;
 
     void Start()
     {
         gun_joyStick = FindObjectOfType<GunJoyStick>();
+        vj = FindObjectOfType<VirtualJoystick>();
     }
 
 
     new void Update()
     {
+
         base.Update();
-        h = gun_joyStick.Horizontal();
-        v = gun_joyStick.Vertical();
+        h = vj.Horizontal();
+        v = vj.Vertical();
 
         if (v <= 0)
         {
@@ -32,6 +35,9 @@ public class GunRotation : Gun
         {
             point_gameObject.transform.Translate(new Vector3(-h, v, 0) * lookSpeed1 * Time.deltaTime);
         }
+
+
+
         Look();
 
     }

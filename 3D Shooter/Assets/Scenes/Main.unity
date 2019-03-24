@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 102236121}
   - component: {fileID: 102236120}
   - component: {fileID: 102236119}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 114696605}
   m_Layer: 8
   m_Name: RayCastLayer
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,7 +314,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 114696604}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.06, z: -3.21}
+  m_LocalPosition: {x: 0, y: 0.06, z: -46.5}
   m_LocalScale: {x: 76.11232, y: 129.0768, z: 12.90785}
   m_Children: []
   m_Father: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 125841674}
   - component: {fileID: 125841673}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GunHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,10 +375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5159bc46d66de954695719a8e867fc1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootForce: 10
+  shootForce: 4
   sprite_height: 1
-  lookSpeed: 2
-  lerpSpeed: 0.726
+  lookSpeed: 5
+  lerpSpeed: 0.4
   gunObject:
   - {fileID: 1654862454}
   - {fileID: 1325878107}
@@ -387,8 +387,8 @@ MonoBehaviour:
   - {fileID: 951401448}
   GunUI:
   - {fileID: 734054692}
-  - {fileID: 281065125}
-  currentGun: 0
+  - {fileID: 1498137726}
+  currentGun: 1
 --- !u!4 &125841674
 Transform:
   m_ObjectHideFlags: 0
@@ -589,7 +589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &281065126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,9 +647,8 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1385559866}
-  - {fileID: 464452666}
   m_Father: {fileID: 1937695036}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -738,14 +737,14 @@ RectTransform:
   m_GameObject: {fileID: 464452665}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.682304, y: 3.6823049, z: 3.6823049}
   m_Children: []
-  m_Father: {fileID: 281065129}
+  m_Father: {fileID: 1498137727}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 264.7, y: 2}
+  m_AnchoredPosition: {x: 959.00073, y: -3.6823049}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &464452667
@@ -899,7 +898,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 578705141}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bullet Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1115,7 +1114,7 @@ GameObject:
   - component: {fileID: 740995275}
   - component: {fileID: 740995274}
   - component: {fileID: 740995273}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1311,7 +1310,7 @@ GameObject:
   - component: {fileID: 823186539}
   - component: {fileID: 823186538}
   - component: {fileID: 823186537}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1506,7 +1505,7 @@ GameObject:
   - component: {fileID: 933149504}
   - component: {fileID: 933149503}
   - component: {fileID: 933149502}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1690,7 +1689,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1043762163}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bullet Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1948,6 +1947,74 @@ Transform:
   m_Father: {fileID: 1983406703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1220816160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1220816161}
+  - component: {fileID: 1220816163}
+  - component: {fileID: 1220816162}
+  m_Layer: 5
+  m_Name: Joystick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1220816161
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1220816160}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1498137727}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 175, y: 175}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1220816162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1220816160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.86764705, g: 0.86764705, b: 0.86764705, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 3eb0c6f89536e4c41b4f7bf349e76488, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1220816163
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1220816160}
 --- !u!1 &1299792098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,7 +2110,7 @@ GameObject:
   - component: {fileID: 1301167781}
   - component: {fileID: 1301167780}
   - component: {fileID: 1301167779}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2110,7 +2177,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1301167778}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 5.17}
+  m_LocalPosition: {x: 3, y: 0, z: 7.3}
   m_LocalScale: {x: 30, y: 27.485613, z: 8}
   m_Children: []
   m_Father: {fileID: 1983406703}
@@ -2125,7 +2192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1325878109}
   - component: {fileID: 1325878108}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GunJoystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2412,6 +2479,90 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1498137726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1498137727}
+  - component: {fileID: 1498137730}
+  - component: {fileID: 1498137729}
+  - component: {fileID: 1498137728}
+  m_Layer: 5
+  m_Name: VirtualJoystick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1498137727
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1498137726}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.54313827, y: 0.5431381, z: 0.5431381}
+  m_Children:
+  - {fileID: 1220816161}
+  - {fileID: 464452666}
+  m_Father: {fileID: 1937695036}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -534.47, y: 60}
+  m_SizeDelta: {x: 400, y: 400}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &1498137728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1498137726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3efea1d8ff6c444945b4febe543e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImgBg: {fileID: 1498137729}
+  ImgJoystick: {fileID: 1220816162}
+--- !u!114 &1498137729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1498137726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 64355dd7931ca634db0ebcbdbe301331, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1498137730
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1498137726}
 --- !u!1001 &1503176513
 Prefab:
   m_ObjectHideFlags: 0
@@ -2575,7 +2726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1654862456}
   - component: {fileID: 1654862455}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GunPointToTouch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2859,7 +3010,7 @@ GameObject:
   - component: {fileID: 1857009961}
   - component: {fileID: 1857009960}
   - component: {fileID: 1857009959}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3076,6 +3227,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 734054693}
+  - {fileID: 1498137727}
   - {fileID: 281065129}
   m_Father: {fileID: 0}
   m_RootOrder: 9

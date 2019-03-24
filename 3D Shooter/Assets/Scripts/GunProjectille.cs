@@ -29,7 +29,7 @@ public class GunProjectille : Gun
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, Ground))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground))
         {
             {
                 point = hit.point;
