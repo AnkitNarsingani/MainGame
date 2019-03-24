@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public abstract class Enemy : LivingEntity
 {
     protected NavMeshAgent navMeshAgent;
-    protected float maxhealth;
     protected EnemyStates currentState;
 
     protected virtual void Start()
     {
-        maxhealth = health;
         currentState = EnemyStates.Idle;
+        healthBar = GetComponentInChildren<Slider>();
     }
 
     void Update()

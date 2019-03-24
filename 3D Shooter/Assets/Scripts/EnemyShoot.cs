@@ -12,6 +12,7 @@ public class EnemyShoot : Enemy
     protected override void Start()
     {
         base.Start();
+
         friendlyAI.GetComponent<FriendlyAI>().RegisterEmemy(gameObject);
         navMeshAgent = GetComponent<NavMeshAgent>();
         shootPositionScript = GameObject.Find("Shoot Positions").GetComponent<ShootPositionsManager>();
@@ -40,6 +41,7 @@ public class EnemyShoot : Enemy
     public override void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
+        healthBar.value = health;
         if ((health / maxhealth) * 100 < 75 && !loaded)
         {
             loaded = true;

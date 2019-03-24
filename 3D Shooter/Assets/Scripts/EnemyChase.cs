@@ -8,6 +8,7 @@ public class EnemyChase : Enemy
     protected override void Start()
     {
         base.Start();
+
         friendlyAI.GetComponent<FriendlyAI>().RegisterEmemy(gameObject);
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.SetDestination(friendlyAI.transform.position);
