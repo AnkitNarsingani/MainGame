@@ -12,6 +12,8 @@ public class Gun : MonoBehaviour
     protected GunHandler gh;
 
     [HideInInspector]
+    public float rateOfFire1 ;
+    [HideInInspector]
     public float shootForce1;
     [HideInInspector]
     public float sprite_height1;
@@ -24,7 +26,7 @@ public class Gun : MonoBehaviour
     public Vector3 point;
     [HideInInspector]
     public Vector3 originalPos;
-    
+    private float timer = 0;
 
     [HideInInspector]
     public GameObject bulletPrefab;
@@ -44,21 +46,27 @@ public class Gun : MonoBehaviour
     }
     public void Update()
     {
+        timer += Time.deltaTime;
         shootForce1 = gh.shootForce;
         lerpSpeed1 = gh.lerpSpeed;
         sprite_height1 = gh.sprite_height;
         lookSpeed1 = gh.lookSpeed;
+        rateOfFire1 = gh.rateOfFire;
     }
 
     protected virtual void Look() { }
 
     public void Shoot()
     {
-        Rigidbody rb;
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().bulletDamage = gunDamage; //Add after Object Pool
-        rb = bullet.GetComponent<Rigidbody>();
-        rb.AddForce(-transform.forward * 1000 * shootForce1);
-        rb.rotation = rot;
+        if (timer > rateOfFire1)
+        {
+            timer = 0;
+            Rigidbody rb;
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+            bullet.GetComponent<Bullet>().bulletDamage = gunDamage; //Add after Object Pool
+            rb = bullet.GetComponent<Rigidbody>();
+            rb.AddForce(-transform.forward * 1000 * shootForce1);
+            rb.rotation = rot;
+        }
     }
 }

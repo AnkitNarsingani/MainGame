@@ -6,6 +6,9 @@ public class GunHandler : MonoBehaviour
 {
 
     [SerializeField]
+    [Range(1,0.1f)]
+    public float rateOfFire = 1;
+    [SerializeField]
     public float shootForce;
     [SerializeField]
     public float sprite_height;

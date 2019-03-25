@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthPointToCamera : MonoBehaviour
 {
     private Camera mainCamera;
-
+   
     private void Start()
     {
         mainCamera = Camera.main;
@@ -13,6 +13,9 @@ public class HealthPointToCamera : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(mainCamera.transform);
+       
+        transform.LookAt(mainCamera.transform.position, Vector3.forward);
+      
+
     }
 }

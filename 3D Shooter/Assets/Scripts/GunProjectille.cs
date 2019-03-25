@@ -31,18 +31,16 @@ public class GunProjectille : Gun
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground))
         {
-            {
+            
                 point = hit.point;
                 point.y = 0;
                 originalPos = transform.position - hit.point;
 
                 rot = Quaternion.LookRotation(originalPos, Vector3.left);
-
-                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookSpeed1);
                 ls.transform.position = point + new Vector3(0, sprite_height1, 0);
-            }
-
         }
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookSpeed1);
+
     }
 
     new void Shoot()
