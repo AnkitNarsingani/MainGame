@@ -371,7 +371,7 @@ MonoBehaviour:
   rateOfFire: 0.2
   shootForce: 4
   sprite_height: 1
-  lookSpeed: 30
+  lookSpeed: 15
   lerpSpeed: 0.1
   gunObject:
   - {fileID: 1654862454}
@@ -2507,7 +2507,7 @@ MonoBehaviour:
     enemy: {fileID: 1489436157426398, guid: 80a96cb183f89b440affd752bbb3cfea, type: 2}
   - name: Wave 2
     enemyCount: 5
-    timeBetweenWaves: 5
+    timeBetweenWaves: 15
     enemy: {fileID: 1299457255117948, guid: 3d94a25316bdaa24389c11076db64998, type: 2}
 --- !u!4 &1483757415
 Transform:
