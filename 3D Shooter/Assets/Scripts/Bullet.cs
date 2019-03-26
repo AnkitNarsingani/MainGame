@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     {
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         FriendlyAI friendlyAI = collision.gameObject.GetComponent<FriendlyAI>();
-        if (damageable != null & friendlyAI == null)
+        if (damageable != null && friendlyAI == null)
         {
             damageable.TakeDamage(bulletDamage);
         }
