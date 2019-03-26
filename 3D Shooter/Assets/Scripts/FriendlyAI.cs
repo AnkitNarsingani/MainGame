@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class FriendlyAI : LivingEntity
 {
@@ -102,13 +101,17 @@ public class FriendlyAI : LivingEntity
         {
             if (enemies.Count > 0)
             {
-                currentEnemy = enemies[0].transform;
+                if (enemies[0] != null)
+                {
+                    currentEnemy = enemies[0].transform;
+                }
                 enemies.RemoveAt(0);
             }
         }
         catch (MissingReferenceException)
         {
-
+            currentEnemy = enemies[0].transform;
+            enemies.RemoveAt(0);
         }
     }
 }
