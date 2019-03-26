@@ -12,10 +12,9 @@ public class LivingEntity : MonoBehaviour, IDamageable
     [SerializeField] protected float timeBetweenAttacks = 1;
     [SerializeField] protected Slider healthBar;
 
-
     void Start()
     {
-        maxhealth = health;
+        
     }
 
     void Update()

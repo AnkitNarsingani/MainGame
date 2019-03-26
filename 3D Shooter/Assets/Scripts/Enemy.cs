@@ -11,6 +11,7 @@ public abstract class Enemy : LivingEntity
 
     protected virtual void Start()
     {
+        maxhealth = health;
         currentState = EnemyStates.Idle;
         healthBar = GetComponentInChildren<Slider>();
     }

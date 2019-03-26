@@ -12,6 +12,7 @@ public class FriendlyAI : LivingEntity
 
     void Start()
     {
+        maxhealth = health;
         friendlyAI = gameObject;
         enemies = new List<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
