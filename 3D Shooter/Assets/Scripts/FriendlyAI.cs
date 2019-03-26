@@ -63,6 +63,12 @@ public class FriendlyAI : LivingEntity
             Die();   
     }
 
+    public void Givehealth(float healthToGive)
+    {
+        health += healthToGive;
+        healthBar.value = health;
+    }
+
     protected override void Die()
     {
         currentState = FriendlyAIStates.Dead;
