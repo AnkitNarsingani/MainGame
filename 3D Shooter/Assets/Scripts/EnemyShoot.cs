@@ -12,7 +12,6 @@ public class EnemyShoot : Enemy
     protected override void Start()
     {
         base.Start();
-
         friendlyAI.GetComponent<FriendlyAI>().RegisterEmemy(gameObject);
         navMeshAgent = GetComponent<NavMeshAgent>();
         shootPositionScript = GameObject.Find("Shoot Positions").GetComponent<ShootPositionsManager>();

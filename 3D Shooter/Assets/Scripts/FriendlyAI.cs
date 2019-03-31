@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class FriendlyAI : LivingEntity
 {
@@ -13,6 +12,7 @@ public class FriendlyAI : LivingEntity
 
     void Start()
     {
+        maxhealth = health;
         friendlyAI = gameObject;
         enemies = new List<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -63,6 +63,12 @@ public class FriendlyAI : LivingEntity
             Die();   
     }
 
+    public void Givehealth(float healthToGive)
+    {
+        health += healthToGive;
+        healthBar.value = health;
+    }
+
     protected override void Die()
     {
         currentState = FriendlyAIStates.Dead;
@@ -96,13 +102,17 @@ public class FriendlyAI : LivingEntity
         {
             if (enemies.Count > 0)
             {
-                currentEnemy = enemies[0].transform;
+                if (enemies[0] != null)
+                {
+                    currentEnemy = enemies[0].transform;
+                }
                 enemies.RemoveAt(0);
             }
         }
         catch (MissingReferenceException)
         {
-
+            currentEnemy = enemies[0].transform;
+            enemies.RemoveAt(0);
         }
     }
 }

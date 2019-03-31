@@ -12,10 +12,7 @@ public class HealthPointToCamera : MonoBehaviour
     }
 
     void Update()
-    {
-       
+    { 
         transform.LookAt(mainCamera.transform.position, Vector3.forward);
-      
-
     }
 }
