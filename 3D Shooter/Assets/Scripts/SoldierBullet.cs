@@ -8,6 +8,7 @@ public class SoldierBullet : MonoBehaviour {
     PoolManager pm;
     public GameObject soldier;
     public Transform t;
+  
     private void OnEnable()
     {
 
@@ -19,6 +20,7 @@ public class SoldierBullet : MonoBehaviour {
     void SoldierShoot()
     {
         GetComponent<Rigidbody>().AddForce(Vector3.forward*Time.deltaTime*1000,ForceMode.Impulse);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -30,6 +32,11 @@ public class SoldierBullet : MonoBehaviour {
     {
 
         transform.position = t.transform.position;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<TrailRenderer>().Clear();
+      
+
+
     }
    void Deactivate()
     {

@@ -20,11 +20,13 @@ public class Soldier : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             print("shoot");
-            GameObject bullet = PoolManager.Instance.getPool();
+            GameObject bullet = PoolManager.Instance.getPool("Bullet");
 
             if (bullet == null) { return; }
-            bullet.transform.position = transform.position + Vector3.forward * 3;  
+            bullet.transform.position = transform.position + Vector3.forward * 3;
+           
             bullet.SetActive(true);
+
         }
       
 

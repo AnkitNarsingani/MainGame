@@ -6,50 +6,71 @@ public class PoolManager : MonoBehaviour
 {
 
     public static PoolManager Instance;
-    public List<GameObject> poolObjects;
-    public GameObject prefab;
-    public int poolSize;
 
-     void Awake()
+    [System.Serializable]
+    public class ObjectData
+    {
+        public string oTag;
+        public int oSize;
+        public GameObject oPrefab;
+        public bool canExpand = false;
+    }
+
+    public List<ObjectData> poolClass = new List<ObjectData>();
+    [HideInInspector]
+    public List<GameObject> poolObject = new List<GameObject>();
+
+    void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
-      
+        else
+            Destroy(gameObject);
+
     }
 
-    public GameObject getPool()
+    public GameObject getPool(string tag)
     {
-        for (int i = 0; i < poolObjects.Count; i++)
+
+        for (int i = 0; i < poolObject.Count; i++)
         {
-            if (!poolObjects[i].activeInHierarchy)
-                return poolObjects[i];
+            if (!poolObject[i].activeInHierarchy && poolObject[i].tag == tag)
+                return poolObject[i];
+
         }
+        foreach (ObjectData o in poolClass)
+        {
+            if (o.oTag == tag)
+            {
+                if (o.canExpand)
+                {
+                    GameObject g = Instantiate(o.oPrefab);
+                    g.SetActive(false);
+                    poolObject.Add(g);
+                    return g;
+                }
+            }
+        }
+
         return null;
-    }
-    private void createPool(GameObject g, int pSize)
-    {
-        for (int i = 0; i < pSize; i++)
-        {
 
-            g = Instantiate(prefab);
-            g.SetActive(false);
-            poolObjects.Add(g);
-        }
     }
+
 
     void Start()
     {
-        
-        poolObjects = new List<GameObject>();
-        createPool(prefab,14);
+        foreach (ObjectData o in poolClass)
+        {
+            for (int i = 0; i < o.oSize; i++)
+            {
+                GameObject g = (GameObject)Instantiate(o.oPrefab);
+                g.SetActive(false);
+                poolObject.Add(g);
+            }
+        }
     }
 
-   
 
-    void Update()
-    {
-
-    }
 }
