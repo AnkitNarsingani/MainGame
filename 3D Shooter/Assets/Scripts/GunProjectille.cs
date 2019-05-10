@@ -3,154 +3,191 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
-public class GunProjectille : Gun
+public class GunProjectille : MonoBehaviour
 {
 
-    //Direct Touch to Move
+    [HideInInspector]
+    public Vector3 point;
+    [HideInInspector]
+    public Vector3 originalPos;
+    [HideInInspector]
+    public GameObject bulletPrefab;
 
+    private float timer = 0;
+    public float gunDamage = 10;
     public GameObject point_gameObject;
-    public GameObject tobj;
-
-    private float h, v;
-    Touch touch;
-    private Vector3 delta = Vector3.zero;
-    Vector3 gettouch;
+    public Transform bulletSpawn;
+    public GameObject ls;
     Vector3 currentScreenPos, screenPos, currentPos;
     Vector3 offset;
-    Vector3 loc;
-    float deltaX, deltaY;
-    bool stayed;
+    Vector3 diff;
+
+    RaycastHit fHit, hit;
+    Ray ray;
+    Hold h;
+    Quaternion rot;
+    int Ground;
+    float touchTimer = 0;
+    public float shootForce1;
+    public float rateOfFire1;
+    public float sprite_height1;
+    public bool singleRate = false;
+    float cT = 1;
+    bool shooting = false;
+
+    public void Awake()
+    {
+        point = Vector3.zero;
+        Quaternion sprite_opp = Quaternion.LookRotation(Vector3.up);
+        ls.transform.rotation = sprite_opp;
+
+    }
     void Start()
     {
         Ground = 1 << 8;
-        ray = new Ray(point_gameObject.transform.position, Vector3.down);
 
+        h = FindObjectOfType<Hold>();
+        ray = new Ray(point_gameObject.transform.position, Vector3.down);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, Ground))
         {
+            point = hit.point;
+            point_gameObject.transform.position = point;
+
+        }
+
+    }
+
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        Look();
+        ShootType();
+
+
+    }
+    void ShootType()
+    {
+        if (h.shoot)
+        {
+            if (singleRate)//Single Fire
             {
-                point = hit.point;
-                point_gameObject.transform.position = point;
+                if (timer > rateOfFire1)
+                {
+                    timer = 0;
+                    Shoot();
+                    h.shoot = false;
+                }
+            }
+            else//Hold and Tap
+            {
+
+                if (shooting == false)
+                {
+                    shooting = true;
+                    StartCoroutine("Shooting");
+                }
+
 
             }
-
         }
+        else
+            shooting = false;
     }
-
-
-
-
-
-
-    new void Update()
+    void Look()
     {
-        base.Update();
-        Look();
-       
-        ls.transform.position = point_gameObject.transform.position + new Vector3(0, sprite_height1, 0);
-       
-    
 
-    //  Clamp();
-}
 
-new void Look()
-    {
-        Touch f0 = Input.GetTouch(0);
-        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
         if (Input.touchCount == 0) return;
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100000,Ground))
+        else
         {
-          
-           
-                if (f0.phase == TouchPhase.Began)
+            Touch f0 = Input.GetTouch(0);
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            if (Physics.Raycast(ray, out hit, 100000, Ground))
+            {
+
+                if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                 {
-                    screenPos = Camera.main.WorldToScreenPoint(point_gameObject.transform.position);
-                    offset = point_gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(f0.position.x, f0.position.y, screenPos.z));
+
+                    if (f0.phase == TouchPhase.Began)
+                    {
+                        touchTimer = 0;
+                        screenPos = Camera.main.WorldToScreenPoint(point_gameObject.transform.position);
+                        offset = point_gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(f0.position.x, f0.position.y, screenPos.z));
+                    }
+                    else if (f0.phase == TouchPhase.Moved)
+                    {
+                        touchTimer += Time.deltaTime;
+                        if (touchTimer > 0.05f)
+                        {
+
+                            touchTimer = 0;
+                            currentScreenPos = new Vector3(f0.position.x, f0.position.y, screenPos.z);
+                            currentPos = Camera.main.ScreenToWorldPoint(currentScreenPos) + offset;
+                            if (currentPos.y <= 0)
+                                currentPos.y = 0;
+                            point_gameObject.transform.position = currentPos;
+                            point_gameObject.transform.position = new Vector3(Mathf.Clamp(point_gameObject.transform.position.x, -12.5f, 12.5f), 0, Mathf.Clamp(point_gameObject.transform.position.z, -25, 19));
+
+                        }
+
+                    }
+                   
                 }
-                else if (f0.phase == TouchPhase.Moved)
-                {
-                    currentScreenPos = new Vector3(f0.position.x, f0.position.y, screenPos.z);
-                    currentPos = Camera.main.ScreenToWorldPoint(currentScreenPos) + offset;
-                    point_gameObject.transform.position = currentPos;
-                }
-            
+
+                
+
+            }
+            LookAt();
         }
-    
-
-    Vector3 diff = point_gameObject.transform.position - transform.position;
-         rot = Quaternion.LookRotation(-diff, Vector3.left);
-          transform.rotation = rot;
-        
-
-
-
-
-
 
 
     }
 
 
-
-    void Clamp()
+    void Shoot()
     {
-        point_gameObject.transform.position = new Vector3(Mathf.Clamp(transform.position.z, -47f, 17f), 0, 0);
-        point_gameObject.transform.position = new Vector3(Mathf.Clamp(transform.position.x, -33f, 33f), 0, 0);
+        Rigidbody rb;
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        bullet.GetComponent<Bullet>().bulletDamage = gunDamage; //Add after Object Pool
+        rb = bullet.GetComponent<Rigidbody>();
+        rb.AddForce(-transform.forward * 1000 * shootForce1);
+        rb.rotation = rot;
+
     }
 
-
-
-    new void Shoot()
+    void LookAt()
     {
-        base.Shoot();
+        diff = point_gameObject.transform.position - transform.position;
+        rot = Quaternion.LookRotation(-diff, Vector3.left);
+
+        transform.rotation = rot;
+        if (Physics.Raycast(transform.position, diff, out fHit, 100000, Ground))
+        {
+            ls.transform.position = fHit.point;
+        }
+    }
+    IEnumerator Shooting()
+    {
+
+        cT = 1;
+        while (shooting)
+        {
+            Shoot();
+            yield return new WaitForSeconds(cT);
+            cT = cT - (Time.deltaTime * 25);
+            cT = Mathf.Clamp(cT, 0.1f, 1);
+        }
     }
 
-
-    //new void Look()
-    //{
-
-    //        if (Input.GetTouch(0).phase == TouchPhase.Began)
-    //            {
-
-    //                tobj.transform.position = hit.point;
-    //                offset = tobj.transform.position - point_gameObject.transform.position;
-
-
-    //            }
-    //            if (Input.GetTouch(0).phase == TouchPhase.Moved)
-    //            {
-
-    //                //tobj.transform.position = hit.point;
-
-    //                print(offset);
-    //point_gameObject.transform.Translate(tobj.transform.position.x - offset.x,  tobj.transform.position.z - offset.z,0);
-
-
-    //            }
-    //            if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled)
-    //            {
-    //                Debug.Log("Ended Touch");
-    //                offset = Vector3.zero;
-
-    //            }
-
-    //            Vector3 diff = point_gameObject.transform.position - transform.position;
-    //rot = Quaternion.LookRotation(-diff, Vector3.left);
-    //            transform.rotation = rot;
-    //        }
-
-
-
-
-
-    //    }
-    //}
-
+   public void SelectFire()
+    {
+        singleRate = !singleRate;
+    }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(tobj.transform.position, point_gameObject.transform.position);
-
+        Debug.DrawRay(transform.position, diff);
     }
 
 }

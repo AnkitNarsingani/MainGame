@@ -47,7 +47,6 @@ public class GunRotation : Gun
 
         Vector3 diff = point_gameObject.transform.position - transform.position;
         rot = Quaternion.LookRotation(-diff, Vector3.left);
-
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime / lerpSpeed1);
         ls.transform.position = point_gameObject.transform.position + Vector3.up * sprite_height1;
 

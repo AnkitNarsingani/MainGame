@@ -62,20 +62,5 @@ public class GunHandler : MonoBehaviour
             ui.SetActive(false);
         }
     }
-    //void OnGUI()
-    //{
-
-    //    if (GUI.Button(new Rect(10, 10, 50, 50), "GunJoyStick"))
-    //    {
-    //        currentGun = 1;
-    //        check(currentGun);
-
-    //    }
-    //    if (GUI.Button(new Rect(60, 10, 50, 50), "GunTouch"))
-    //    {
-    //        currentGun = 0;
-    //        check(currentGun);
-    //    }
-
-    //}
+    
 }
