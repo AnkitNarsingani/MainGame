@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class GunProjectille : MonoBehaviour
@@ -21,7 +22,7 @@ public class GunProjectille : MonoBehaviour
     Vector3 currentScreenPos, screenPos, currentPos;
     Vector3 offset;
     Vector3 diff;
-
+    Touch f0;
     RaycastHit fHit, hit;
     Ray ray;
     Hold h;
@@ -86,6 +87,7 @@ public class GunProjectille : MonoBehaviour
                 {
                     shooting = true;
                     StartCoroutine("Shooting");
+                   
                 }
 
 
@@ -101,16 +103,20 @@ public class GunProjectille : MonoBehaviour
         if (Input.touchCount == 0) return;
         else
         {
-            Touch f0 = Input.GetTouch(0);
+            if (IsPointerOverUI())
+            {
+                 f0 = Input.GetTouch(1);
+            }
+            else
+                 f0 = Input.GetTouch(0);
 
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
             if (Physics.Raycast(ray, out hit, 100000, Ground))
             {
 
-                if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                {
+                
 
-                    if (f0.phase == TouchPhase.Began)
+                if (f0.phase == TouchPhase.Began)
                     {
                         touchTimer = 0;
                         screenPos = Camera.main.WorldToScreenPoint(point_gameObject.transform.position);
@@ -133,16 +139,28 @@ public class GunProjectille : MonoBehaviour
                         }
 
                     }
-                   
                 }
+                   
+                
 
                 
 
-            }
+            
             LookAt();
         }
 
 
+    }
+    bool IsPointerOverUI()
+    {
+        foreach (Touch t in Input.touches)
+        {
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 
