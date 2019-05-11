@@ -35,6 +35,7 @@ public class GunProjectille : MonoBehaviour
     public bool singleRate = false;
     float cT = 1;
     bool shooting = false;
+    bool touching = false;
 
     public void Awake()
     {
@@ -62,6 +63,7 @@ public class GunProjectille : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+
         Look();
         ShootType();
 
@@ -86,15 +88,18 @@ public class GunProjectille : MonoBehaviour
                 if (shooting == false)
                 {
                     shooting = true;
+                    cT = 1;
                     StartCoroutine("Shooting");
-                   
-                }
 
+                }
 
             }
         }
         else
+        {
+            StopAllCoroutines();
             shooting = false;
+        }
     }
     void Look()
     {
@@ -103,49 +108,41 @@ public class GunProjectille : MonoBehaviour
         if (Input.touchCount == 0) return;
         else
         {
-            if (IsPointerOverUI())
-            {
-                 f0 = Input.GetTouch(1);
-            }
-            else
-                 f0 = Input.GetTouch(0);
+            f0 = Input.GetTouch(0);
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            Ray ray = Camera.main.ScreenPointToRay(f0.position);
             if (Physics.Raycast(ray, out hit, 100000, Ground))
             {
 
-                
+
 
                 if (f0.phase == TouchPhase.Began)
-                    {
-                        touchTimer = 0;
-                        screenPos = Camera.main.WorldToScreenPoint(point_gameObject.transform.position);
-                        offset = point_gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(f0.position.x, f0.position.y, screenPos.z));
-                    }
-                    else if (f0.phase == TouchPhase.Moved)
-                    {
-                        touchTimer += Time.deltaTime;
-                        if (touchTimer > 0.05f)
-                        {
-
-                            touchTimer = 0;
-                            currentScreenPos = new Vector3(f0.position.x, f0.position.y, screenPos.z);
-                            currentPos = Camera.main.ScreenToWorldPoint(currentScreenPos) + offset;
-                            if (currentPos.y <= 0)
-                                currentPos.y = 0;
-                            point_gameObject.transform.position = currentPos;
-                            point_gameObject.transform.position = new Vector3(Mathf.Clamp(point_gameObject.transform.position.x, -12.5f, 12.5f), 0, Mathf.Clamp(point_gameObject.transform.position.z, -25, 19));
-
-                        }
-
-                    }
+                {
+                    touchTimer = 0;
+                    screenPos = Camera.main.WorldToScreenPoint(point_gameObject.transform.position);
+                    offset = point_gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(f0.position.x, f0.position.y, screenPos.z));
                 }
-                   
-                
+                else if (f0.phase == TouchPhase.Moved)
+                {
+                    touchTimer += Time.deltaTime;
+                    if (touchTimer > 0.05f)
+                    {
 
-                
+                        touchTimer = 0;
+                        currentScreenPos = new Vector3(f0.position.x, f0.position.y, screenPos.z);
+                        currentPos = Camera.main.ScreenToWorldPoint(currentScreenPos) + offset;
+                        if (currentPos.y <= 0)
+                            currentPos.y = 0;
+                        point_gameObject.transform.position = currentPos;
+                        point_gameObject.transform.position = new Vector3(Mathf.Clamp(point_gameObject.transform.position.x, -12.5f, 12.5f), 0, Mathf.Clamp(point_gameObject.transform.position.z, -25, 19));
 
-            
+                    }
+
+                }
+            }
+
+
+
             LookAt();
         }
 
@@ -155,10 +152,11 @@ public class GunProjectille : MonoBehaviour
     {
         foreach (Touch t in Input.touches)
         {
-            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            if (EventSystem.current.IsPointerOverGameObject(t.fingerId))
             {
                 return true;
             }
+
         }
         return false;
     }
@@ -189,17 +187,18 @@ public class GunProjectille : MonoBehaviour
     IEnumerator Shooting()
     {
 
-        cT = 1;
         while (shooting)
         {
             Shoot();
             yield return new WaitForSeconds(cT);
             cT = cT - (Time.deltaTime * 25);
-            cT = Mathf.Clamp(cT, 0.1f, 1);
+            cT = Mathf.Clamp(cT, 0.25f, 1);
         }
+
+
     }
 
-   public void SelectFire()
+    public void SelectFire()
     {
         singleRate = !singleRate;
     }
