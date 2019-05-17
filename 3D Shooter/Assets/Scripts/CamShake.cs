@@ -18,7 +18,7 @@ public class Shake : MonoBehaviour
 
     void Update()
     {
-       
+     
         if (Input.GetKeyDown(KeyCode.Space))
         {
             InvokeRepeating("CamShake", 0, 0.005f);
