@@ -11,7 +11,7 @@ public class GunProjectille : MonoBehaviour
     public Vector3 point;
     [HideInInspector]
     public Vector3 originalPos;
-    [HideInInspector]
+   
     public GameObject bulletPrefab;
 
     private float timer = 0;
