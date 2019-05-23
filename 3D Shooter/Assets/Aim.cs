@@ -15,24 +15,19 @@ public class Aim : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        startAngle = chest.transform.position;
+        chest = anim.GetBoneTransform(HumanBodyBones.Chest);
 
     }
-
-    // Update is called once per frame
     void LateUpdate()
     {
         if (!see) return;
         else
         {
-            Vector3 direction = (transform.position - target.position).normalized;
-            float angle = Vector3.Angle(transform.forward, direction);
 
-
-            chest.LookAt(target.position);
+            chest.LookAt(target);
             chest.rotation = chest.rotation * Quaternion.Euler(offset);
         }
-        
+
 
     }
 }

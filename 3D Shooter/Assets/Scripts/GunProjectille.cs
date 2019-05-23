@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
@@ -11,7 +10,6 @@ public class GunProjectille : MonoBehaviour
     public Vector3 point;
     [HideInInspector]
     public Vector3 originalPos;
-   
     public GameObject bulletPrefab;
 
     private float timer = 0;
