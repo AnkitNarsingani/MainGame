@@ -18,7 +18,7 @@ public class HeliMove : MonoBehaviour
 
     void LateUpdate()
     {
-        float height = 2 * Mathf.Tan(Time.time/amplitude)*magnitude;
+        float height = 2 * Mathf.Sin(Time.time/amplitude)*magnitude;
         pos.y = height;
         transform.position = new Vector3(pos.x, pos.y + spos.y, pos.z);
 
